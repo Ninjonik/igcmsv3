@@ -18,12 +18,12 @@
         <div class="row">
           <div class="container-fluid mt-100">
             <div class="row">
+                {foreach from=$categories item=$category}
                 <div class="col-md-12">
                     <div class="card mb-3">
-                        {foreach from=$categories item=$categories2}
                         <div class="card-header pr-0 pl-0">
                             <div class="row no-gutters align-items-center w-100">
-                                <div class="col font-weight-bold pl-3">{$categories2["title"]}</div>
+                                <div class="col font-weight-bold pl-3">{$category["title"]}</div>
                                 <div class="d-none d-md-block col-6 text-muted">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col-3">Threads</div>
@@ -33,51 +33,33 @@
                                 </div>
                             </div>
                         </div>
-                          {foreach from=$forums item=$forums2}
-                            {if $categories2["id"] == $forums2["parent"]}
+                          {foreach from $forums item=$forum}
+                            {$forum["parent"]}
                             <div class="card-body py-3">
                                 <div class="row no-gutters align-items-center">
-                                    <div class="col"><a href="viewforum?id={$forums2['id']}" class="text-big font-weight-semibold" data-abc="true">{$forums2["title"]}</a></div>
+                                    <div class="col"><a href="viewforum?id=id" class="text-big font-weight-semibold" data-abc="true">title</a></div>
                                     <div class="d-none d-md-block col-6">
                                         <div class="row no-gutters align-items-center">
-                                            {foreach from=$threadscount item=$thrcou}
-                                              {if $forums2["id"] == $thrcou["threadforumID"]}
                                                 <div class="col-3">
-                                                  {$thrcou["threadscount"]}
+                                                  threadscount
                                                 </div>
-                                              {/if}
-                                            {/foreach}
 
-                                            {foreach from=$postscount item=$pocou}
-                                              {if $forums2["id"] == $pocou["forumID"]}
                                                 <div class="col-3">
-                                                  {$pocou["postscount"]}
+                                                  postcount
                                                 </div>
-                                              {/if}
-                                            {/foreach}
-                                        {foreach from=$lastupdate item=$lastupd}
-                                          {if $forums2["id"] == $lastupd["forumID"]}
-                                          {foreach from=$lastupdate2 item=$lastupd2}
-                                            {if $lastupd["editcomID"] == $lastupd2["id"]}
-                                              <div class="media col-6 align-items-center"> <img src="{$lastupd2['avatar']}" alt="" class="d-block ui-w-30 rounded-circle">
-                                                  <div class="media-body flex-truncate ml-2"> <a href="viewtopic?id={$lastupd['id']}" class="d-block text-truncate" data-abc="true">{$lastupd2["desc"]|truncate:15}</a>
-                                                      <div class="text-muted small text-truncate">{$lastupd2["time"]|date_format:"%d.%m.%Y %H:%M"} &nbsp;·&nbsp; <a href="profile?id={$lastupd2['userID']}" class="text-muted" data-abc="true">{$lastupd2["username"]}</a></div>
+                                              <div class="media col-6 align-items-center"> <img src="avatar" alt="" class="d-block ui-w-30 rounded-circle">
+                                                  <div class="media-body flex-truncate ml-2"> <a href="viewtopic?id={$lastupd['id']}" class="d-block text-truncate" data-abc="true">desc|truncate:15</a>
+                                                      <div class="text-muted small text-truncate">lastupdate &nbsp;·&nbsp; <a href="profile?id=profileid" class="text-muted" data-abc="true">username</a></div>
                                                   </div>
                                               </div>
-                                            {/if}
-                                          {/foreach}
-
-                                          {/if}
-                                        {/foreach}
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            {/if}
                           {/foreach}
-                        {/foreach}
                     </div>
                 </div>
+                {/foreach}
             </div>
           </div>
         </div>
