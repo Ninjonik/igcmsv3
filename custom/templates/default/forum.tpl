@@ -33,29 +33,42 @@
                                 </div>
                             </div>
                         </div>
-                          {foreach from $forums item=$forum}
-                            {$forum["parent"]}
+                          {foreach from=$forums item=$forum}
+                            {if $forum["parent"] == $category["id"]}
                             <div class="card-body py-3">
                                 <div class="row no-gutters align-items-center">
-                                    <div class="col"><a href="viewforum?id=id" class="text-big font-weight-semibold" data-abc="true">title</a></div>
+                                    <div class="col"><a href="viewforum?id={$forum['id']}" class="text-big font-weight-semibold" data-abc="true">{$forum["title"]}</a></div>
                                     <div class="d-none d-md-block col-6">
                                         <div class="row no-gutters align-items-center">
                                                 <div class="col-3">
-                                                  threadscount
+                                                {foreach from=$threadscount item=$threadcount}
+                                                  {if $threadcount["parentID"] == $forum["id"]}
+                                                    {$threadcount["count"]}
+                                                  {/if}
+                                                {/foreach}
                                                 </div>
 
                                                 <div class="col-3">
-                                                  postcount
+                                                {foreach from=$postscounts item=$postcount}
+                                                  {if $postcount["parentID"] == $forum["id"]}
+                                                    {$postcount["count"]}
+                                                  {/if}
+                                                {/foreach}
                                                 </div>
-                                              <div class="media col-6 align-items-center"> <img src="avatar" alt="" class="d-block ui-w-30 rounded-circle">
-                                                  <div class="media-body flex-truncate ml-2"> <a href="viewtopic?id={$lastupd['id']}" class="d-block text-truncate" data-abc="true">desc|truncate:15</a>
-                                                      <div class="text-muted small text-truncate">lastupdate &nbsp;·&nbsp; <a href="profile?id=profileid" class="text-muted" data-abc="true">username</a></div>
-                                                  </div>
-                                              </div>
+                                              {foreach from=$lastupdates item=$lastupdate}
+                                                {if $lastupdate["parentID"] == $forum["id"]}
+                                                  <div class="media col-6 align-items-center"> <a href="profile?id={$lastupdate['data']['userID']}"><img src="{$lastupdate["avatar"]}" alt="" class="d-block ui-w-30 rounded-circle"></a>
+                                                        <div class="media-body flex-truncate ml-2"> <a href="viewtopic?id={$lastupdate['data']['topicID']}" class="d-block text-truncate" data-abc="true">{$lastupdate['data']['title']|truncate:15}</a>
+                                                            <div class="text-muted small text-truncate">{$lastupdate['data']['time']|date_format:"%d.%m.%Y %H:%M"} &nbsp;·&nbsp; <a href="profile?id={$lastupdate['data']['userID']}" class="text-muted" data-abc="true">{$lastupdate['data']['username']}</a></div>
+                                                        </div>
+                                                    </div>
+                                                {/if}
+                                              {/foreach}
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                          {/if}
                           {/foreach}
                     </div>
                 </div>
