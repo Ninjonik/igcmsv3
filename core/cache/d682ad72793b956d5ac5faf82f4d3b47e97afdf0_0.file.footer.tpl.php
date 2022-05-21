@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-05-07 10:48:05
+/* Smarty version 3.1.34-dev-7, created on 2022-05-21 11:12:03
   from '/var/www/html/igcms/custom/templates/default/footer.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_62764055d829b2_83604201',
+  'unifunc' => 'content_6288baf3e25eb2_92679539',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_62764055d829b2_83604201 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6288baf3e25eb2_92679539 (Smarty_Internal_Template $_smarty_tpl) {
 ?></div>
 <p>
 <footer class="footer footer-simple" style="bottom: 0;">

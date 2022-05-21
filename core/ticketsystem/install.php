@@ -2,14 +2,24 @@
 
   require_once("../includes/config.php");
 
+  // Set basic configuration
+
+  // title
   $title = "Ticket System NO2";
+  // description
   $desc = "Ultimate ticket system created from NNTWorks.";
+  // version of the plugin
   $version = 2;
+  // plugin's api for getting version
   $api = "igportals.eu/ticketsystemapi/";
+  // path to plugin's folder
   $path = "ticketsystem";
+  // pages that plugin has in user panel
   $pagesplugin = array("tickets", "createticket", "viewticket");
+  // pages that plugin has in admin panel
   $adminpagesplugin = array("tickets", "viewticket");
 
+  // check if plugin already is in database
   $stmt = $db->prepare('SELECT id FROM plugins WHERE `path`=:path');
   $stmt->execute(array(":path" => $path));
   $row = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -18,90 +28,151 @@
     print_r($stmt->errorInfo());
   }
 
-if($_GET["action"] == "install"){
-    if(empty($row["id"])){
+  // Initialize
+  $pluginmain = new PluginMain($title, $desc, $version, $api, $path, $pagesplugin, $adminpagesplugin, $db, $row);
 
-      $sql12 = file_get_contents('sql.sql');
+  // Get action information
+  switch($_GET["action"]){
 
-			$mysqli = new mysqli(DBHOST, DBUSER, DBPASS, DBNAME);
+    case "install":
+        // check if plugin is already installed, if not install it
+        if(empty($row["id"])){
+            $pluginmain->install();
+        } else {
+            header("Location: ../admin_panel/plugins?action=pluginwasnotinstalled");
+        }
+    break;
 
-			/* execute multi query */
-			$mysqli->multi_query($sql12);
+    case "update":
+        // check if plugin is already installed, if not give error message
+        if(empty($row["id"])){
+            header("Location: ../admin_panel/plugins?action=pluginwasnotunninstalled");
+        } else {
+            $pluginmain->update();
+        }
+    break;
 
-      $stmt = $db->prepare('INSERT INTO plugins (title,`desc`,version,api,`path`) VALUES (:title, :desc, :version, :api, :path)');
-      $stmt->execute(array(":title" => $title, ":desc" => $desc, ":version" => $version, ":api" => $api, ":path" => $path));
+    case "uninstall":
+        // check if plugin is already installed, if not give error message
+        if(empty($row["id"])){
+            header("Location: ../admin_panel/plugins?action=pluginwasnotupdated");
+        } else {
+            $pluginmain->uninstall();
+        }
+    break;
 
-      foreach($pagesplugin as $pageplugin){
-        copy("core/user_panel/".$pageplugin.".php","../user_panel/".$pageplugin.".php");
-        copy("custom/templates/default/".$pageplugin.".tpl", "../../custom/templates/default/".$pageplugin.".tpl");
+  }
+
+  class PluginMain {
+
+    private $title;
+    private $desc;
+    private $version;
+    private $api;
+    private $path;
+    private $pagesplugin;
+    private $adminpagesplugin;
+    private $rowdata;
+    private $db;
+
+      function __construct($title, $desc, $version, $api, $path, $pagesplugin, $adminpagesplugin, $db, $rowdata){
+        $this->title = $title;
+        $this->desc = $desc;
+        $this->version = $version;
+        $this->api = $api;
+        $this->path = $path;
+        $this->pagesplugin = $pagesplugin;
+        $this->adminpagesplugin = $adminpagesplugin;
+        $this->db = $db;
       }
 
-      foreach($adminpagesplugin as $adminpageplugin){
-        copy("core/admin_panel/".$adminpageplugin.".php","../admin_panel/".$adminpageplugin.".php");
-        copy("custom/panel_templates/default/".$adminpageplugin.".tpl", "../../custom/panel_templates/default/".$adminpageplugin.".tpl");
+      function install(){
+        // get sql database structure
+        $sql12 = file_get_contents('sql.sql');
+
+        $mysqli = new mysqli(DBHOST, DBUSER, DBPASS, DBNAME);
+
+        // insert it into database
+        $mysqli->multi_query($sql12);
+
+        // insert plugin info into database
+        $stmt = $this->db->prepare('INSERT INTO plugins (title,`desc`,version,api,`path`) VALUES (:title, :desc, :version, :api, :path)');
+        $stmt->execute(array(":title" => $this->title, ":desc" => $this->desc, ":version" => $this->version, ":api" => $this->api, ":path" => $this->path));
+
+        // copy user_panel pages
+        foreach($this->pagesplugin as $pageplugin){
+            copy("core/user_panel/".$this->pageplugin.".php","../user_panel/".$this->pageplugin.".php");
+            copy("custom/templates/default/".$this->pageplugin.".tpl", "../../custom/templates/default/".$this->pageplugin.".tpl");
+        }
+
+        // copy admin_panel pages
+        foreach($this->adminpagesplugin as $adminpageplugin){
+            copy("core/admin_panel/".$adminpageplugin.".php","../admin_panel/".$adminpageplugin.".php");
+            copy("custom/panel_templates/default/".$adminpageplugin.".tpl", "../../custom/panel_templates/default/".$this->adminpageplugin.".tpl");
+        }
+
+        // set navbar links
+
+        copy("custom/templates/plugins/".$this->path.".tpl", "../../custom/templates/plugins/".$this->path.".tpl");
+        copy("custom/panel_templates/plugins/".$this->path.".tpl", "../../custom/panel_templates/plugins/".$this->path.".tpl");
+
+        header("Location: ../admin_panel/plugins?action=pluginsuccessfullyinstalled");
       }
 
-      copy("custom/templates/plugins/".$path.".tpl", "../../custom/templates/plugins/".$path.".tpl");
-      copy("custom/panel_templates/plugins/".$path.".tpl", "../../custom/panel_templates/plugins/".$path.".tpl");
+      function update(){
+        // update plugin information
+        $stmt = $this->db->prepare('UPDATE plugins SET title=:title, `desc`=:desc, version=:version, api=:api WHERE id=:id');
+        $stmt->execute(array(":title" => $this->title, ":desc" => $this->desc, ":version" => $this->version, ":api" => $this->api, ":id" => $this->row["id"]));
 
-      header("Location: ../admin_panel/plugins?action=pluginsuccessfullyinstalled");
-    } else {
-      header("Location: ../admin_panel/plugins?action=pluginwasnotinstalled");
-    }
-} else if($_GET["action"] == "uninstall") {
-    if(empty($row["id"])){
-      header("Location: ../admin_panel/plugins?action=pluginwasnotunninstalled");
-    } else {
-      $stmt = $db->prepare('DELETE FROM plugins WHERE id=:id');
-      $stmt->execute(array(":id" => $row["id"]));
+        // delete old files
+        foreach($this->pagesplugin as $pageplugin){
+            unlink('../user_panel/'.$pageplugin.'.php');
+            unlink('../../custom/templates/default/'.$pageplugin.'.tpl');
+        }
+        unlink('../../custom/templates/default/plugins/'.$this->path.'.tpl');
 
-      $stmt2 = $db->prepare('DROP TABLE tickets');
-      $stmt2->execute();
-      $stmt3 = $db->prepare('DROP TABLE tickets_comments');
-      $stmt3->execute();
+        // copy new files
+        foreach($this->pagesplugin as $pageplugin){
+            copy("core/user_panel/".$pageplugin.".php","../user_panel/".$pageplugin.".php");
+            copy("custom/templates/default/".$pageplugin.".tpl", "../../custom/templates/default/".$pageplugin.".tpl");
+        }
+        foreach($this->adminpagesplugin as $adminpageplugin){
+            copy("core/admin_panel/".$adminpageplugin.".php","../admin_panel/".$adminpageplugin.".php");
+            copy("custom/panel_templates/default/".$adminpageplugin.".tpl", "../../custom/panel_templates/default/".$adminpageplugin.".tpl");
+        }
+        copy("custom/templates/plugins/".$this->path.".tpl", "../../custom/templates/plugins/".$this->path.".tpl");
+        copy("custom/panel_templates/plugins/".$this->path.".tpl", "../../custom/panel_templates/plugins/".$this->path.".tpl");
 
-      foreach($pagesplugin as $pageplugin){
-        unlink('../user_panel/'.$pageplugin.'.php');
-        unlink('../../custom/templates/default/'.$pageplugin.'.tpl');
+        header("Location: ../admin_panel/plugins?action=pluginupdated");
       }
 
-      foreach($adminpagesplugin as $adminpageplugin){
-        unlink('../admin_panel/'.$adminpageplugin.'.php');
-        unlink('../../custom/panel_templates/default/'.$adminpageplugin.'.tpl');
+      function uninstall(){
+        // delete plugin information from database
+        $stmt = $this->db->prepare('DELETE FROM plugins WHERE id=:id');
+        $stmt->execute(array(":id" => $this->rowdata["id"]));
+  
+        // remove plugin's data from database
+        $stmt2 = $this->db->prepare('DROP TABLE tickets');
+        $stmt2->execute();
+        $stmt3 = $this->db->prepare('DROP TABLE tickets_comments');
+        $stmt3->execute();
+  
+        // remove plugin's pages
+        foreach($this->pagesplugin as $pageplugin){
+          unlink('../user_panel/'.$pageplugin.'.php');
+          unlink('../../custom/templates/default/'.$pageplugin.'.tpl');
+        }
+  
+        foreach($this->adminpagesplugin as $adminpageplugin){
+          unlink('../admin_panel/'.$tadminpageplugin.'.php');
+          unlink('../../custom/panel_templates/default/'.$dminpageplugin.'.tpl');
+        }
+  
+        unlink('../../custom/panel_templates/default/plugins/'.$this->path.'.tpl');
+  
+        header("Location: ../admin_panel/plugins?action=pluginunninstalled");
       }
 
-      unlink('../../custom/panel_templates/default/plugins/'.$path.'.tpl');
-
-      header("Location: ../admin_panel/plugins?action=pluginunninstalled");
-    }
-} else if($_GET["action"] == "update") {
-    if(empty($row["id"])){
-      header("Location: ../admin_panel/plugins?action=pluginwasnotupdated");
-    } else {
-
-      $stmt = $db->prepare('UPDATE plugins SET title=:title, `desc`=:desc, version=:version, api=:api WHERE id=:id');
-      $stmt->execute(array(":title" => $title, ":desc" => $desc, ":version" => $version, ":api" => $api, ":id" => $row["id"]));
-
-      foreach($pagesplugin as $pageplugin){
-        unlink('../user_panel/'.$pageplugin.'.php');
-        unlink('../../custom/templates/default/'.$pageplugin.'.tpl');
-      }
-      unlink('../../custom/templates/default/plugins/'.$path.'.tpl');
-      foreach($pagesplugin as $pageplugin){
-        copy("core/user_panel/".$pageplugin.".php","../user_panel/".$pageplugin.".php");
-        copy("custom/templates/default/".$pageplugin.".tpl", "../../custom/templates/default/".$pageplugin.".tpl");
-      }
-      foreach($adminpagesplugin as $adminpageplugin){
-        copy("core/admin_panel/".$adminpageplugin.".php","../admin_panel/".$adminpageplugin.".php");
-        copy("custom/panel_templates/default/".$adminpageplugin.".tpl", "../../custom/panel_templates/default/".$adminpageplugin.".tpl");
-      }
-      copy("custom/templates/plugins/".$path.".tpl", "../../custom/templates/plugins/".$path.".tpl");
-      copy("custom/panel_templates/plugins/".$path.".tpl", "../../custom/panel_templates/plugins/".$path.".tpl");
-
-      header("Location: ../admin_panel/plugins?action=pluginupdated");
-    }
-} else {
-  header("Location: ../admin_panel/plugins?action=accessforbidden");
-}
+  }
 
 ?>

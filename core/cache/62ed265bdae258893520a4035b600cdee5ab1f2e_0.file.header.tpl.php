@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-05-07 10:48:05
+/* Smarty version 3.1.34-dev-7, created on 2022-05-21 11:12:03
   from '/var/www/html/igcms/custom/templates/default/header.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_62764055d7c8a4_43039528',
+  'unifunc' => 'content_6288baf3e22e84_48119996',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -21,7 +21,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:../plugins/".((string)$_smarty_tpl->tpl_vars[\'pluginspath\']->value).".tpl' => 1,
   ),
 ),false)) {
-function content_62764055d7c8a4_43039528 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6288baf3e22e84_48119996 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 

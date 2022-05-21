@@ -15,7 +15,6 @@
                      <div class="card card-coin card-plain">
                         <div class="card-header">
                            <img src="{$avatar}" class="img-center img-fluid rounded-circle">
-                           <h4 class="title">Transactions</h4>
                         </div>
                         <div class="card-body">
                            <ul class="nav nav-tabs nav-tabs-primary justify-content-center">

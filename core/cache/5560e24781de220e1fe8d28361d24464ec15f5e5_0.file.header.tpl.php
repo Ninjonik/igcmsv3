@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-05-07 10:48:04
+/* Smarty version 3.1.34-dev-7, created on 2022-05-21 12:27:09
   from '/var/www/html/igcms/custom/panel_templates/default/header.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_627640543d5570_47092615',
+  'unifunc' => 'content_6288cc8da4ce27_39893604',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -21,7 +21,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:../plugins/".((string)$_smarty_tpl->tpl_vars[\'pluginspath\']->value).".tpl' => 1,
   ),
 ),false)) {
-function content_627640543d5570_47092615 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6288cc8da4ce27_39893604 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!--
  =========================================================
 * Black Dashboard PRO - v1.1.1

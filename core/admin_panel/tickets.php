@@ -2,8 +2,6 @@
 
 require_once("hdr.php");
 
-  getperm(9);
-
   $rowtickets = getfromDBijMa("T1.*, T2.*", "tickets", "categories", "catID", "catID", "ORDER BY editdate DESC");
 
   foreach($rowtickets as $key => $csm)

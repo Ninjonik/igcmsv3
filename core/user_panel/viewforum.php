@@ -5,139 +5,82 @@ require_once("hdr.php");
 $id = $_GET["id"];
 isempty("forum?action=invalidid", $id);
 
-// CHECK IF IT IS CATEGORY OR NOT {
-  $stmt255 = $db->prepare("SELECT * FROM forums WHERE id=:id");
-  $stmt255->execute(array(":id" => $id));
-  $row255 = $stmt255->fetch(PDO::FETCH_ASSOC);
+// BASIC - FORUMS AND TOPICS
 
-  if (!$stmt255->execute())
-  {
-    print_r($stmt255->errorInfo());
-  }
+$forums = $db->prepare("SELECT id, title, `desc`, parent FROM forums WHERE id=:id ORDER BY `order`");
+$forums->execute(array(":id" => htmlspecialchars($_GET["id"])));
+$forumsrow = $forums->fetch(PDO::FETCH_ASSOC);
 
-  if($row255["parent"] == 0){
-    header("Location: forum?action=invalidid");
-  }
-// }
-
-// FORUMS {
-$stmt25 = $db->prepare("SELECT * FROM forums WHERE parent=:parent ORDER by `order`");
-$stmt25->execute(array(":parent" => $id));
-$row25 = $stmt25->fetch(PDO::FETCH_ASSOC);
-
-if (!$stmt25->execute())
-{
-  print_r($stmt25->errorInfo());
+if(!$forums->execute()){
+  print_r($forums->errorInfo());
 }
 
-while ($row25 = $stmt25->fetch(PDO::FETCH_ASSOC)){
-  $forums[] = $row25;
+if($forumsrow["parent"] == 0){
+  header("Location: forum?action=invalidid");
+}
 
-  //
+$forum = $db->prepare("SELECT id, title, `desc`, parent FROM forums WHERE parent=:parent ORDER BY `order`");
+  $forum->execute(array(":parent" => htmlspecialchars($_GET["id"])));
+  $forumrow = $forum->fetch(PDO::FETCH_ASSOC);
 
-  $stmt2524 = $db->prepare("SELECT forumID, editcomID, id FROM topics WHERE forumID=:forumID ORDER by `editdate` DESC LIMIT 1");
-  $stmt2524->execute(array(":forumID" => $row25["id"]));
-  $row2524 = $stmt2524->fetch(PDO::FETCH_ASSOC);
-
-  if (!$stmt2524->execute())
-  {
-    print_r($stmt2524->errorInfo());
+  if(!$forum->execute()){
+    print_r($forum->errorInfo());
   }
 
-  while ($row2524 = $stmt2524->fetch(PDO::FETCH_ASSOC))
-  {
+  while ($forumrow = $forum->fetch(PDO::FETCH_ASSOC)){
+    $forumfinal[] = $forumrow;
 
-    $var1[] = $row2524;
+    // STATISTICS
 
-    $stmt25245 = $db->prepare("SELECT
-      T.userID,
-      T.`desc`,
-      T.`time`,
-      T.id,
-      M.username
-      FROM topics_comments AS T
-      INNER JOIN members AS M
-      ON
-        M.memberID = T.userID
-      WHERE id=:id
-    ");
-    $stmt25245->execute(array(":id" => $row2524["editcomID"]));
-    $row25245 = $stmt25245->fetch(PDO::FETCH_ASSOC);
+      // THREADCOUNT
+        // PART ONE
 
-    if (!$stmt25245->execute())
-    {
-      print_r($stmt25245->errorInfo());
-    }
+          $threadscount = $db->prepare("SELECT COUNT(T.id) AS count1, COUNT(TC.id) AS count2 FROM topics as T INNER JOIN topics_comments as TC on T.id = TC.topicID WHERE forumID=:forumID");
+          $threadscount->execute(array(":forumID" => $forumrow["id"]));
+          $threads = $threadscount->fetch(PDO::FETCH_ASSOC);
+          if(!$threadscount->execute()){
+            print_r($threadscount->errorInfo());
+          }
 
-    while ($row25245 = $stmt25245->fetch(PDO::FETCH_ASSOC))
-    {
-      $var2[] = $row25245;
-    }
+          $postcountarray[] = ["count" => $threads["count2"], "parentID" => $forumrow["id"]];
+
+
+        // PART ... NEXT
+          // MAYBE ONEDAY WILL BE COMPLETED
+
+
+      // LAST UPDATE 
+          // PART ONE
+          
+          $lastupdate = $db->prepare("SELECT TC.userID, TC.time, M.username, T.title, T.id AS countposts, topicID FROM topics as T INNER JOIN topics_comments as TC ON T.id = TC.topicID INNER JOIN members as M ON TC.userID = M.memberID WHERE forumID=:forumID ORDER BY `time` DESC LIMIT 1");
+          $lastupdate->execute(array(":forumID" => $forumrow["id"]));
+          $lastupdaterow = $lastupdate->fetch(PDO::FETCH_ASSOC);
+          if(!$lastupdate->execute()){
+            print_r($lastupdate->errorInfo());
+          }
+          $avatarlastupdate = getavatar(100, $lastupdaterow["userID"]);
+          $lastupdatefinalised[] = ["parentID" => $forumrow["id"], "data" => $lastupdaterow, "avatar" => $avatarlastupdate];
+        // PART ... NEXT
+          // MAYBE ONEDAY WILL BE COMPLETED
+      
+
   }
 
-  //
-
-}
-
-$smarty->assign("forums", $forums);
-// }
-
-// TOPICS {
-$stmt25248 = $db->prepare("SELECT T.*, M.username FROM topics AS T INNER JOIN members AS M ON M.memberID = T.authorID  WHERE forumID=:id ORDER by `editdate` DESC");
-$stmt25248->execute(array(":id" => $id));
-$row25248 = $stmt25248->fetch(PDO::FETCH_ASSOC);
-
-if (!$stmt25248->execute())
-{
-  print_r($stmt25248->errorInfo());
-}
-
-while ($row25248 = $stmt25248->fetch(PDO::FETCH_ASSOC))
-{
-
-  $var18[] = $row25248;
-
-  $stmt252458 = $db->prepare("SELECT
-    T.userID,
-    T.`desc`,
-    T.`time`,
-    T.topicID,
-    T.id,
-    M.username
-    FROM topics_comments AS T
-    INNER JOIN members AS M
-    ON
-      M.memberID = T.userID
-    WHERE id=:id
-  ");
-  $stmt252458->execute(array(":id" => $row25248["editcomID"]));
-  $row252458 = $stmt252458->fetch(PDO::FETCH_ASSOC);
-
-  if (!$stmt252458->execute())
-  {
-    print_r($stmt252458->errorInfo());
+  $topics = $db->prepare("SELECT TC.userID, TC.time, M.username, T.title, T.id, COUNT(TC.id) AS countposts, topicID FROM topics as T INNER JOIN topics_comments as TC ON T.id = TC.topicID INNER JOIN members as M ON TC.userID = M.memberID WHERE forumID=:forumID ORDER BY `time` DESC");
+  $topics->execute(array(":forumID" => htmlspecialchars($_GET["id"])));
+  $topicsrow = $topics->fetch(PDO::FETCH_ASSOC);
+  if(!$topics->execute()){
+    print_r($topics->errorInfo());
   }
+  $avatarlastupdatetopics = getavatar(100, $topicsrow["userID"]);
+  $lastupdatefinalisedtopics[] = ["parentID" => $forumrow["id"], "data" => $topicsrow, "avatar" => $avatarlastupdatetopics];
 
-  while ($row252458 = $stmt252458->fetch(PDO::FETCH_ASSOC))
-  {
-    $var28[] = $row252458;
-  }
-}
-
-foreach($var28 as $var38){
-  $avatarus8["avatar"] = getavatar(100, $var38["userID"]);
-  $varus8[] = $var38 + $avatarus8;
-}
-$smarty->assign("topics", $var18);
-$smarty->assign("topics2", $varus8);
-// }
-
-foreach($var2 as $var3){
-  $avatarus["avatar"] = getavatar(100, $var3["userID"]);
-  $varus[] = $var3 + $avatarus;
-}
-$smarty->assign("lastupdate", $var1);
-$smarty->assign("lastupdate2", $varus);
+$smarty->assign("threadscount", $countarray);
+$smarty->assign("postscounts", $postcountarray);
+$smarty->assign("lastupdates", $lastupdatefinalised);
+$smarty->assign("topics", $lastupdatefinalisedtopics);
+$smarty->assign("forums", $forumfinal);
+$smarty->assign("catinfo", $forumsrow);
 
 $smarty->display("viewforum.tpl");
 

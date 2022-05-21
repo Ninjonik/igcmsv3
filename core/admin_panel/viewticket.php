@@ -2,8 +2,6 @@
 
   require_once("hdr.php");
 
-  getperm(9);
-
   $stmt2e = $db->prepare("SELECT T.*, TC.* FROM tickets as T INNER JOIN categories as TC ON TC.catID=T.catID WHERE id=:id");
 	$stmt2e->execute(array(":id" => $_GET["id"]));
 	$row2e = $stmt2e->fetch(PDO::FETCH_ASSOC);
