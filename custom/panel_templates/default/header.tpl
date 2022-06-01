@@ -238,7 +238,7 @@
            {foreach from=$pluginpath item=$pluginspath}
             {include file="../plugins/$pluginspath.tpl"}
           {/foreach}
-          <li {getactivemenuitem string="sitesettings.php"} {getactivemenuitem string="members.php"}>
+          <li {getactivemenuitem string="sitesettings.php"} {getactivemenuitem string="members.php"} {getactivemenuitem string="settings_modules.php"}>
             <a data-toggle="collapse" href="#settings">
               <i class="fas fa-cogs"></i>
               <p>
@@ -258,6 +258,12 @@
                   <a href="members">
                     <span class="sidebar-mini-icon">U</span>
                     <span class="sidebar-normal"> Užívatelia </span>
+                  </a>
+                </li>
+                <li>
+                  <a href="settings_modules">
+                    <span class="sidebar-mini-icon">M</span>
+                    <span class="sidebar-normal"> Moduly </span>
                   </a>
                 </li>
               </ul>
