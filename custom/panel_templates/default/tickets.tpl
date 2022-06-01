@@ -4,18 +4,7 @@
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <div class="tools float-right">
-                  <div class="dropdown">
-                    <button type="button" class="btn btn-default dropdown-toggle btn-link btn-icon" data-toggle="dropdown">
-                      <i class="tim-icons icon-settings-gear-63"></i>
-                    </button>
-                    <a href="creategroup">Vytvoriť skupinu</a>
-                    <div class="dropdown-menu dropdown-menu-right">
-                      <a class="dropdown-item" href="#">Niečo</a>
-                    </div>
-                  </div>
-                </div>
-                <h4 class="card-title">Skupiny</h4>
+                <h4 class="card-title">Tickety</h4>
               </div>
               <div class="card-body">
                 <div class="table-responsive">
@@ -67,7 +56,7 @@
                          {$ticket["name"]}
                         </td>
                         <td>
-                          <a href="viewtopic?id={$ticket['id']}"><button type="button" rel="tooltip" class="btn btn-success btn-link btn-sm btn-icon " data-original-title="Tooltip on top" title="Zobraziť">
+                          <a href="viewticket?id={$ticket['id']}"><button type="button" rel="tooltip" class="btn btn-success btn-link btn-sm btn-icon " data-original-title="Tooltip on top" title="Zobraziť">
                             <i class="tim-icons icon-pencil"></i>
                           </button></a>
                         </td>

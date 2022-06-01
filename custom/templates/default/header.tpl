@@ -356,6 +356,7 @@ a {
           {foreach from=$pluginpath item=$pluginspath}
             {include file="../plugins/$pluginspath.tpl"}
           {/foreach}
+
           <li class="nav-item">
             <a class="nav-link" href="forum">
               <p>Fórum</p>

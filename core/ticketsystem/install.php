@@ -84,6 +84,7 @@
         $this->pagesplugin = $pagesplugin;
         $this->adminpagesplugin = $adminpagesplugin;
         $this->db = $db;
+        $this->rowdata = $rowdata;
       }
 
       function install(){
@@ -101,14 +102,14 @@
 
         // copy user_panel pages
         foreach($this->pagesplugin as $pageplugin){
-            copy("core/user_panel/".$this->pageplugin.".php","../user_panel/".$this->pageplugin.".php");
-            copy("custom/templates/default/".$this->pageplugin.".tpl", "../../custom/templates/default/".$this->pageplugin.".tpl");
+            copy("core/user_panel/".$pageplugin.".php","../user_panel/".$pageplugin.".php");
+            copy("custom/templates/default/".$pageplugin.".tpl", "../../custom/templates/default/".$pageplugin.".tpl");
         }
 
         // copy admin_panel pages
         foreach($this->adminpagesplugin as $adminpageplugin){
             copy("core/admin_panel/".$adminpageplugin.".php","../admin_panel/".$adminpageplugin.".php");
-            copy("custom/panel_templates/default/".$adminpageplugin.".tpl", "../../custom/panel_templates/default/".$this->adminpageplugin.".tpl");
+            copy("custom/panel_templates/default/".$adminpageplugin.".tpl", "../../custom/panel_templates/default/".$adminpageplugin.".tpl");
         }
 
         // set navbar links
@@ -150,7 +151,7 @@
         // delete plugin information from database
         $stmt = $this->db->prepare('DELETE FROM plugins WHERE id=:id');
         $stmt->execute(array(":id" => $this->rowdata["id"]));
-  
+
         // remove plugin's data from database
         $stmt2 = $this->db->prepare('DROP TABLE tickets');
         $stmt2->execute();
@@ -164,7 +165,7 @@
         }
   
         foreach($this->adminpagesplugin as $adminpageplugin){
-          unlink('../admin_panel/'.$tadminpageplugin.'.php');
+          unlink('../admin_panel/'.$adminpageplugin.'.php');
           unlink('../../custom/panel_templates/default/'.$dminpageplugin.'.tpl');
         }
   

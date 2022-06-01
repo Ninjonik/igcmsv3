@@ -17,7 +17,7 @@
                          <a href="createticket">Vytvoriť Ticket</a>
                        </div>
                      </div>
-                     <h4 class="card-title">Skupiny</h4>
+                     <h4 class="card-title">Tickety</h4>
                    </div>
                    <div class="card-body">
                      <div class="table-responsive">
