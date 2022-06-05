@@ -343,15 +343,22 @@ a {
             </div>
           </li>
 
-          {$pagestart}
+          {if !empty($pages)}
+          <li class="dropdown nav-item" {getmodulestatus id=6}>
+            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+              <i class="fa fa-cogs d-lg-none d-xl-none"></i> Stránky
+            </a>
+            <div class="dropdown-menu dropdown-with-icons">
 
-            {foreach from=$pagelist item=$pagel}
+            {foreach from=$pages item=$pagel}
             <a href="viewpage?id={$pagel['id']}" class="dropdown-item">
               <i class="tim-icons {$pagel['icon']}"></i> {$pagel['title']}
             </a>
             {/foreach}
 
-          {$pageend}
+            </div>
+          </li>
+          {/if}
 
           {foreach from=$pluginpath item=$pluginspath}
             {include file="../plugins/$pluginspath.tpl"}

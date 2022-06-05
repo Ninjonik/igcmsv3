@@ -123,7 +123,7 @@
               </ul>
             </div>
           </li>
-          <li {getactivemenuitem string="pages.php"} {getactivemenuitem string="createpage.php"} {getactivemenuitem string="editpage.php"}>
+          <li {getactivemenuitem string="pages.php"} {getactivemenuitem string="createpage.php"} {getactivemenuitem string="editpage.php"} {getmodulestatus id=6}>
             <a data-toggle="collapse" href="#pages">
               <i class="tim-icons icon-single-copy-04"></i>
               <p>

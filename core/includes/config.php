@@ -31,8 +31,9 @@ try {
     exit;
 }
 
-//include the user class, pass in the database connection
+//include classes
 require_once('classes/userinfo.class.php');
+require_once('classes/modules.class.php');
 require_once('classes/user.php');
 require_once('classes/phpmailer/mail.php');
 $user = new User($db);

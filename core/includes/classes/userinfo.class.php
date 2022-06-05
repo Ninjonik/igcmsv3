@@ -5,8 +5,8 @@ class userinfo {
     private $_db;
   
       function __construct($userid,$db) {
-      $this->userid = $userid;
-      $this->_db = $db;
+        $this->userid = $userid;
+        $this->_db = $db;
       }
   
       public function usrgrpdetails($what){

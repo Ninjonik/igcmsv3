@@ -564,4 +564,11 @@ function smarty_function_getactivemenuitem($name, &$smarty){
   }
 }
 
+function smarty_function_getmodulestatus($moduleid, &$smarty){
+	global $db;
+	$moduleclass = new moduleinfo($moduleid["id"],$db);
+  	return $modulestatus = $moduleclass->modulevisibility();
+}
+
+
 ?>

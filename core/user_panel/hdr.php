@@ -9,24 +9,7 @@
 	// PAGES
 
 		 $rowpagelist = getfromDBm("*", "pages");
-		 if(!empty($rowpagelist)){
-			 $pagestart = '
-			 <li class="dropdown nav-item">
-				 <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-					 <i class="fa fa-cogs d-lg-none d-xl-none"></i> Stránky
-				 </a>
-				 <div class="dropdown-menu dropdown-with-icons">
-			 ';
-			 $pageend = '</div>
-		 </li>';
-		 	 $smarty->assign("pagestart", $pagestart);
-			 $smarty->assign("pageend", $pageend);
-			 $smarty->assign("pagelist", $rowpagelist);
-		 } else {
-			 $smarty->assign("pagestart", "");
-			 $smarty->assign("pageend", "");
-			 $smarty->assign("pagelist", array());
-		 }
+		$smarty->assign("pages", $rowpagelist);
 
 	// END OF PAGES
 

@@ -2,6 +2,8 @@
 
   require_once("hdr.php");
 
+  $moduleclass = new moduleinfo(6,$db);
+  $modulestatus = $moduleclass->modulestatus();
   getperm(12);
 
   $stmt2 = $db->prepare("SELECT * FROM pages WHERE id=:id");
