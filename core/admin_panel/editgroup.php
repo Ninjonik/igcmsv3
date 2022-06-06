@@ -58,6 +58,13 @@
     header("Location: index?action=invalidid");
   }
 
+  $dbresult = getfromdbm("*", "groups_perms");
+
+  $i = 0;
+  foreach($dbresult as $dbresultos){
+    $i++;
+  }
+
   if(isset($_POST["submit"])){
 
     $perms = array(); 
@@ -75,9 +82,10 @@
     $title = $_POST["firstname"];
     $colour = $_POST["colour"];
 
-      updateDB("groups", "title='".$title."', colour='".$colour."', perms='".$rdyperms."', html='".$_POST['html']."'", "id=".htmlspecialchars($_GET['id'])."");
 
-      header("Location: groups?action=groupsuccesfullyedited");
+    updateDB("groups", "title='".$title."', colour='".$colour."', perms='".$rdyperms."', html='".$_POST['html']."'", "id=".htmlspecialchars($_GET['id'])."");
+
+    header("Location: groups?action=groupsuccesfullyedited");
 
   }
 

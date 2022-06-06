@@ -2,6 +2,8 @@
 
 	require_once("hdr.php");
 
+	$moduleclass = new moduleinfo(2,$db);
+  	$modulestatus = $moduleclass->modulestatus();
   isempty("forum?action=invalidid", $_GET["id"]);
 
 	$stmt2526 = $db->prepare("SELECT

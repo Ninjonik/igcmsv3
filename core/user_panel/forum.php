@@ -2,6 +2,9 @@
 
 	require_once("hdr.php");
 
+	$moduleclass = new moduleinfo(2,$db);
+ 	 $modulestatus = $moduleclass->modulestatus();
+
 	// BASIC - CATEGORIES AND FORUMS
 
 	$category = $db->prepare("SELECT id, title, `desc` FROM forums WHERE parent=0 ORDER BY `order`");

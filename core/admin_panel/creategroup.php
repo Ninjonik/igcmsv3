@@ -26,7 +26,7 @@
     } 
     $rdyperms = serialize($perms);
 
-      $stmt = $db->prepare('INSERT INTO groups (title,colour,perms,html) VALUES (:title, :colour, :perms, :html)');
+      $stmt = $db->prepare('INSERT INTO `groups` (title,colour,perms,html) VALUES (:title, :colour, :perms, :html)');
       $stmt->execute(array(
           ':title' => $_POST["firstname"],
           ':colour' => $_POST["colour"],

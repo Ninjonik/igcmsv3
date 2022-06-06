@@ -78,6 +78,13 @@ $sitetitle = $siteinform["siteTitle"];
 $smarty->assign("siteTitle", $sitetitle);
 $smarty->assign("username", $_SESSION['username']);
 
+if($user->is_logged_in()){
+  $smarty->assign("isloggedin", "yes");
+} else {
+  $smarty->assign("isloggedin", "no");
+}
+
+
 // GET USER INFORMATION
 
 $userinfo = getfromDBnw("groupID", "members", "memberID", $_SESSION["memberID"]);

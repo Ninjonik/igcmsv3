@@ -2,6 +2,9 @@
 
 require_once("hdr.php");
 
+$moduleclass = new moduleinfo(1,$db);
+$modulestatus = $moduleclass->modulestatus();
+
 islog("createpost.php");
 
 $stmt2 = $db->prepare("SELECT * FROM categories WHERE type=:type ORDER BY catID");

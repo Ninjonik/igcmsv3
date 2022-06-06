@@ -2,6 +2,8 @@
 
   require_once("hdr.php");
 
+  $moduleclass = new moduleinfo(2,$db);
+  $modulestatus = $moduleclass->modulestatus();
   getperm(6);
 
   $stmt2 = $db->prepare("SELECT * FROM forums WHERE id=:id");

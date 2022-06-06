@@ -570,5 +570,33 @@ function smarty_function_getmodulestatus($moduleid, &$smarty){
   	return $modulestatus = $moduleclass->modulevisibility();
 }
 
+function smarty_function_getpermVisibility($perm, &$smarty) {
+	global $db;
+	global $usergroupID;
+	global $user;
+	
+	$stmtg = $db->prepare('SELECT perms FROM `groups` WHERE id=:usergroupID');
+	$stmtg->execute(array(":usergroupID" => $usergroupID));
+	$rowg = $stmtg->fetch(PDO::FETCH_ASSOC);
+
+	if (!$stmtg->execute()) {
+		print_r($stmtg->errorInfo());
+	}
+
+	while ($rowg = $stmtg->fetch(PDO::FETCH_ASSOC)) {
+		$rdyperms = unserialize($rowg["perms"]);
+		foreach($rdyperms as $perms){
+			if($perms["id"] == $perm["id"]){
+				if($perms["value"] == 0) {
+					return "hidden";
+				}
+			}
+		}
+	}
+
+	// getperm(1);
+
+}
+
 
 ?>

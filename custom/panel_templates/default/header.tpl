@@ -148,7 +148,7 @@
               </ul>
             </div>
           </li>
-          <li {getactivemenuitem string="assignments.php"} {getactivemenuitem string="createassignment.php"} {getactivemenuitem string="myassignments.php"}>
+          <li {getactivemenuitem string="assignments.php"} {getactivemenuitem string="createassignment.php"} {getactivemenuitem string="myassignments.php"} {getmodulestatus id=4}>
             <a data-toggle="collapse" href="#assignments">
               <i class="tim-icons icon-pin"></i>
               <p>
@@ -179,7 +179,7 @@
               </ul>
             </div>
           </li>
-          <li {getactivemenuitem string="forums.php"} {getactivemenuitem string="createforum.php"}>
+          <li {getactivemenuitem string="forums.php"} {getactivemenuitem string="createforum.php"} {getmodulestatus id=2}>
             <a data-toggle="collapse" href="#forums">
               <i class="tim-icons icon-notes"></i>
               <p>
@@ -204,13 +204,32 @@
               </ul>
             </div>
           </li>
-          <li {getactivemenuitem string="plugins.php"}>
-            <a href="plugins">
-              <i class="tim-icons icon-puzzle-10"></i>
-              <p>Pluginy</p>
+          <li {getactivemenuitem string="plugins.php"} {getactivemenuitem string="settings_modules.php"}>
+            <a data-toggle="collapse" href="#plugins">
+              <i class="tim-icons icon-puzzle-10""></i>
+              <p>
+                Moduly & Pluginy
+                <b class="caret"></b>
+              </p>
             </a>
+            <div class="collapse" id="plugins">
+              <ul class="nav">
+                <li>
+                  <a href="settings_modules">
+                    <span class="sidebar-mini-icon">M</span>
+                    <span class="sidebar-normal"> Moduly </span>
+                  </a>
+                </li>
+                <li>
+                  <a href="plugins">
+                    <span class="sidebar-mini-icon">P</span>
+                    <span class="sidebar-normal"> Pluginy </span>
+                  </a>
+                </li>
+              </ul>
+            </div>
           </li>
-          <li {getactivemenuitem string="cases.php"} {getactivemenuitem string="createcase.php"} {getactivemenuitem string="items.php"} {getactivemenuitem string="createitem.php"}>
+          <li {getactivemenuitem string="cases.php"} {getactivemenuitem string="createcase.php"} {getactivemenuitem string="items.php"} {getactivemenuitem string="createitem.php"} {getmodulestatus id=5}>
             <a data-toggle="collapse" href="#cases">
               <i class="fas fa-briefcase"></i>
               <p>
@@ -258,12 +277,6 @@
                   <a href="members">
                     <span class="sidebar-mini-icon">U</span>
                     <span class="sidebar-normal"> Užívatelia </span>
-                  </a>
-                </li>
-                <li>
-                  <a href="settings_modules">
-                    <span class="sidebar-mini-icon">M</span>
-                    <span class="sidebar-normal"> Moduly </span>
                   </a>
                 </li>
               </ul>

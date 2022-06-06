@@ -5,6 +5,9 @@
     //error_reporting(E_ALL);
     isempty("index?action=invalidid", $_GET["id"]);
 
+    $moduleclass = new moduleinfo(5,$db);
+    $modulestatus = $moduleclass->modulestatus();
+
     $MoneyData = getfromDBw(
         "*",
         "case_money",

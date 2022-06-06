@@ -2,6 +2,8 @@
 
   require_once("hdr.php");
 
+  $moduleclass = new moduleinfo(4,$db);
+  $modulestatus = $moduleclass->modulestatus();
   getperm(4);
 
   $stmt3 = $db->prepare("SELECT id,people FROM assignments");

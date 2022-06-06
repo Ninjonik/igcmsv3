@@ -2,6 +2,8 @@
 
   require_once("hdr.php");
 
+  $moduleclass = new moduleinfo(4,$db);
+  $modulestatus = $moduleclass->modulestatus();
   getperm(5);
 
   $stmt2 = $db->prepare("SELECT * FROM members ORDER BY memberID");

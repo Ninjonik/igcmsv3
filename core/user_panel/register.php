@@ -6,6 +6,9 @@
 
   require_once("hdr.php");
 
+  $moduleclass = new moduleinfo(3,$db);
+  $modulestatus = $moduleclass->modulestatus();
+
   isntlog();
 
   //if form has been submitted process it

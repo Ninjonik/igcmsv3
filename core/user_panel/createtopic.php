@@ -2,6 +2,9 @@
 
 require_once("hdr.php");
 
+$moduleclass = new moduleinfo(2,$db);
+$modulestatus = $moduleclass->modulestatus();
+
 islog("createpost.php");
 isempty("forum?action=invalidid", $_GET["id"]);
 // CHECK IF IT IS CATEGORY OR NOT {

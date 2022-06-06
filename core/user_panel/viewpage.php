@@ -2,6 +2,9 @@
 
 	require_once("hdr.php");
 
+  $moduleclass = new moduleinfo(6,$db);
+  $modulestatus = $moduleclass->modulestatus();
+
 	isempty("index?action=invalidid", $_GET["id"]);
 
   $row = getfromDBw("*", "pages", "id", htmlspecialchars($_GET['id']));

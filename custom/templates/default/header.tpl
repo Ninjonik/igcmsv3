@@ -322,7 +322,7 @@ a {
             </div>
           </div>
         </div>
-        <ul class="navbar-nav ml-auto">
+        <ul class="navbar-nav ml-auto" {getmodulestatus id=1}>
           <li class="dropdown nav-item">
             <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
               <i class="fa fa-cogs d-lg-none d-xl-none"></i> Články
@@ -364,7 +364,7 @@ a {
             {include file="../plugins/$pluginspath.tpl"}
           {/foreach}
 
-          <li class="nav-item">
+          <li class="nav-item" {getmodulestatus id=2}>
             <a class="nav-link" href="forum">
               <p>Fórum</p>
             </a>
@@ -373,7 +373,34 @@ a {
             <a href="#" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown">
               <p>Profil</p>
             </a>
-              {$navbarprofile}
+              {if $isloggedin == "yes"}
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="profile.php?id={$membercurrentID}">
+                    Profil
+                    </a>
+                    <a class="dropdown-item" href="usettings.php">
+                    Upraviť profil
+                    </a>
+                    <a class="dropdown-item" href="logout.php">
+                    Odhlásiť sa
+                    </a>
+                    <a class="dropdown-item" href="../admin_panel/index" {getpermVisibility id=1}>
+                    Administrácia
+                    </a>
+                  </div>
+              {else}
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="login.php">
+                  Prihlásiť sa
+                  </a>
+                  <a class="dropdown-item" href="register.php" {getmodulestatus id=3}>
+                  Zaregistrovať sa
+                  </a>
+                  <a class="dropdown-item" href="reset.php">
+                  Reset hesla
+                  </a>
+                </div>
+              {/if}
           </li>
           <!-- <li class="nav-item">
 					<a class="nav-link" rel="tooltip" title="Follow us on Twitter" data-placement="bottom" href="https://twitter.com/CreativeTim" target="_blank">

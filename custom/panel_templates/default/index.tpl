@@ -117,7 +117,7 @@
               </div>
             </div>
         </div>
-          <div class="col-md-3">
+          <div class="col-md-3" {getmodulestatus id=4}>
             <div class="card card-tasks">
               <div class="card-header">
                 <!-- {assign var=counter value=0}  -->

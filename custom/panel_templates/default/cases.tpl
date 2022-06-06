@@ -67,9 +67,12 @@
                            <a href="editchances?id={$items['id']}"><button type="button" rel="tooltip" class="btn btn-success btn-link btn-sm btn-icon " data-original-title="Tooltip on top" title="Upraviť šance">
                             <i class="fas fa-percent"></i>
                           </button></a>
+                          <a href="../user_panel/opencase.php?id={$items['id']}"><button type="button" rel="tooltip" class="btn btn-primary btn-link btn-sm " data-original-title="Tooltip on top" title="Zobraziť">
+                            <i class="tim-icons icon-zoom-split"></i>
+                          </button></a>
                           <a href="action.php?action=deleteitem&id={$items['id']}&route=items?action=itemdeleted"><button type="button" rel="tooltip" class="btn btn-danger btn-link btn-sm " data-original-title="Tooltip on top" title="Zmazať">
                             <i class="tim-icons icon-simple-remove"></i>
-                          </button>
+                          </button></a>
                         </td>
                       </tr>
                       {/foreach}
