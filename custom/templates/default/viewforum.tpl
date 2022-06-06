@@ -77,7 +77,7 @@
                      {foreach from=$topics item=$final}
                      <div class="card-body py-3">
                         <div class="row no-gutters align-items-center">
-                           <div class="col"><a href="viewtopic?id={$final["data"]['id']}" class="text-big font-weight-semibold" data-abc="true">{$final["data"]["title"]}</a></div>
+                           <div class="col"><a href="viewtopic?id={$final["data"]['topicID']}" class="text-big font-weight-semibold" data-abc="true">{$final["data"]["title"]}</a></div>
                            <div class="d-none d-md-block col-6">
                               <div class="row no-gutters align-items-center">
                                  <div class="col-3">
@@ -89,7 +89,19 @@
                                        <a href="viewtopic?id={$final['data']['topicID']}" class="d-block text-truncate" data-abc="true">{$final['data']['title']|truncate:15}</a>
                                        <div class="text-muted small text-truncate">{$final['data']['time']|date_format:"%d.%m.%Y %H:%M"} &nbsp;·&nbsp; <a href="profile?id={$final['data']['userID']}" class="text-muted" data-abc="true">{$final['data']['username']}</a></div>
                                     </div>
-                                 </div>
+                                    <div align="right">
+                                       {if $final["data"]["isPinned"]}
+                                          <i class="fas fa-link"></i>
+                                       {else}
+                                          <i class="fas fa-unlink"></i>
+                                       {/if}
+                                       {if $final["data"]["isLocked"]}
+                                          <i class="fas fa-lock"></i>
+                                       {else}
+                                          <i class="fas fa-unlock"></i>
+                                       {/if}
+                                    </div>
+                                 </>
                               </div>
                            </div>
                         </div>

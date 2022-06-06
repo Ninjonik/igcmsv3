@@ -4,6 +4,8 @@
 
 	$id = $_GET["id"];
 	$targetID = $_GET["targetID"];
+	$add = htmlspecialchars($_GET["add"]);
+  	$add2 = htmlspecialchars($_GET["add2"]);
 
 	function removea($what, $idd){
 			global $db;
@@ -36,6 +38,15 @@
 					removea("posts", $id);
 					header("Location: index?action=success");
 				}
+				break;
+			case "modifytopic":
+				getperm(7);
+				$stmt = $db->prepare("UPDATE topics SET ".$add."=:add2 WHERE id=:id");
+				$stmt->execute(array(
+					':add2' => intval($add2),
+					':id' => $id
+				));
+				header("Location: viewtopic?id=".$id."&action=topicmodified");
 				break;
 		}
 	}

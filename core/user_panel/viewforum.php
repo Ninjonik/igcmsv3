@@ -68,7 +68,7 @@ $forum = $db->prepare("SELECT id, title, `desc`, parent FROM forums WHERE parent
 
   }
 
-  $topics = $db->prepare("SELECT TC.userID, TC.time, M.username, T.title, T.id, COUNT(TC.id) AS countposts, topicID FROM topics as T INNER JOIN topics_comments as TC ON T.id = TC.topicID INNER JOIN members as M ON TC.userID = M.memberID WHERE forumID=:forumID ORDER BY `time` DESC");
+  $topics = $db->prepare("SELECT TC.userID, TC.time, M.username, T.title, T.id, T.isLocked, T.isPinned, topicID FROM topics as T INNER JOIN topics_comments as TC ON T.id = TC.topicID INNER JOIN members as M ON TC.userID = M.memberID WHERE forumID=:forumID ORDER BY T.isPinned DESC, TC.time DESC");
   $topics->execute(array(":forumID" => htmlspecialchars($_GET["id"])));
   $topicsrow = $topics->fetch(PDO::FETCH_ASSOC);
   if(!$topics->execute()){

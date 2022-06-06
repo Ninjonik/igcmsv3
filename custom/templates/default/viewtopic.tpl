@@ -16,9 +16,23 @@
 <div class="main main-raised">
 <div class="container">
    <div class="container-fluid mt-100">
-      <div class="row">
-        <a href="forum">Fórum</a> &nbsp; / &nbsp;<a href="viewforum?id={$topicinfo['forumID']}">{$topicinfo["titleforum"]}</a>&nbsp; / &nbsp;{$topicinfo["title"]}
+      <div class="row"> 
          <div class="col-md-12">
+         <a href="forum">Fórum</a> &nbsp; / &nbsp;<a href="viewforum?id={$topicinfo['forumID']}">{$topicinfo["titleforum"]}</a>&nbsp; / &nbsp;{$topicinfo["title"]}
+
+         <div align="right" {getpermVisibility id=7}>
+            {if $topicinfo['isPinned'] == 0}
+            <a href="actions.php?action=modifytopic&add=isPinned&add2=1&id={$topicinfo['id']}"><button class="btn btn-primary"><i class="fas fa-link"></i> Pin</button></a>
+            {else}
+            <a href="actions.php?action=modifytopic&add=isPinned&add2=0&id={$topicinfo['id']}"><button class="btn btn-primary"><i class="fas fa-unlink"></i> Unpin</button></a>
+            {/if}
+            {if $topicinfo['isLocked'] == 0}
+            <a href="actions.php?action=modifytopic&add=isLocked&add2=1&id={$topicinfo['id']}"><button class="btn btn-primary"><i class="fas fa-lock"></i> Lock</button></a>
+            {else}
+            <a href="actions.php?action=modifytopic&add=isLocked&add2=0&id={$topicinfo['id']}"><button class="btn btn-primary"><i class="fas fa-unlock"></i> Unlock</button></a>
+            {/if}
+         </div>
+
             {foreach from=$rowcom item=$rowcoms}
             <div class="card mb-4" id="com{$rowcoms['id']}">
                <div class="card-header">
@@ -50,6 +64,7 @@
                </div>
              </div>
             {/foreach}
+            {if $topicinfo['isLocked'] == 0 or {getpermValue id=7} == 1}
             <form method="post">
             <div class="card mb-4">
                <div class="card-header">
@@ -76,6 +91,7 @@
                </div>
              </div>
            </form>
+           {/if}
          </div>
       </div>
    </div>

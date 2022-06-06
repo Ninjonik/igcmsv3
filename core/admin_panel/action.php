@@ -5,6 +5,8 @@
   $action = $_GET["action"];
   $id = htmlspecialchars($_GET["id"]);
   $route = htmlspecialchars($_GET["route"]);
+  $add = htmlspecialchars($_GET["add"]);
+  $add2 = htmlspecialchars($_GET["add2"]);
 
   switch ($action) {
     case "deleteassignment":
@@ -51,7 +53,7 @@
         ));
         break;
     case "deletecase":
-    getperm(201);
+      getperm(201);
       $stmt = $db->prepare("DELETE FROM case_cases WHERE id=:id");
       $stmt->execute(array(
         ':id' => $id
