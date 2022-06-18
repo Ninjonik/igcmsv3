@@ -1,5 +1,5 @@
 <?php
 
-	header("Location: core/user_panel/index");
+	header("Location: core/user_panel/install.php");
  
 ?>
