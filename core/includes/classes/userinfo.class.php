@@ -18,7 +18,7 @@ class userinfo {
             return $stmt->fetch();
     
         } catch(PDOException $e) {
-            echo '<p class="bg-danger">'.$e->getMessage().'</p>';
+            return '<p class="bg-danger">'.$e->getMessage().'</p>';
         }
   
      } 
