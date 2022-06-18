@@ -546,12 +546,18 @@ function likeornot($form, $route, $dbtarget, $secondaryroute){
 
 function smarty_modifier_rsort_array($array)
 {
+	if(empty($array)){
+		return null;
+	}
     rsort($array);
     return $array;
 }
 
 function smarty_modifier_sort_array($array)
 {
+	if(empty($array)){
+		return null;
+	}
     sort($array);
     return $array;
 }

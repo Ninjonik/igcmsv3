@@ -1,6 +1,9 @@
 <?php
 
-	error_reporting(0);
+    $sstatus = 0;
+	ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 	if(!empty($_GET["step"])){
 		$step = $_GET["step"];
@@ -196,8 +199,56 @@
                                         header("Location: install.php?step=3&name=".$sname."&slogan=".$sslogan."");
                                     }
                                 } else if ($step == '3'){
-                                    require_once("core/includes/config.php");
-									
+                                    
+                                    // CONFIG
+
+
+                                    session_save_path("uploads/sessions");
+
+                                    ob_start();
+                                    session_start();
+
+                                    ini_set('display_errors', '1');
+                                    ini_set('display_startup_errors', '1');
+                                    error_reporting(E_ERROR || E_WARNING);
+
+
+
+                                    //set timezone
+                                    date_default_timezone_set('Europe/London');
+
+                                    require_once("core/includes/version.php");
+                                    require_once("core/includes/settings.php");
+
+                                    try {
+
+                                        //create PDO connection
+                                        $db = new PDO("mysql:host=".DBHOST.";charset=utf8mb4;dbname=".DBNAME, DBUSER, DBPASS);
+                                        //$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_SILENT);//Suggested to uncomment on production websites
+                                        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);//Suggested to comment on production websites
+                                        $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+
+                                    } catch(PDOException $e) {
+                                        //show error
+                                        echo '<p class="bg-danger">'.$e->getMessage().'</p>';
+                                        exit;
+                                    }
+                                    //include classes
+                                    require_once('core/includes/classes/userinfo.class.php');
+                                    require_once('core/includes/classes/modules.class.php');
+                                    require_once('core/includes/classes/user.php');
+                                    require_once('core/includes/classes/phpmailer/mail.php');
+                                    $user = new User($db);
+                                    //define include checker
+                                    define('included', 1);
+                                    require_once('core/includes/functions.php');
+                                    require_once("core/includes/api.php");
+                                    require_once("core/includes/errors.php");
+
+
+
+                                    // END CONFIG
+
                                     echo '
                                     <div class="panel-title">Register first (administrator) user.</div>
                                     </div>     
@@ -232,32 +283,35 @@
                                         if (!isset($_POST['username'])) $error[] = $l['pleasefillalla'];
                                         if (!isset($_POST['email'])) $error[] = $l['pleasefillalla'];
                                         if (!isset($_POST['password'])) $error[] = $l['pleasefillalla'];
-
-                                        $username = $_POST['username'];
+                                        echo "a";
+                                        echo $_POST["username"];
+                                        $username = $_POST["username"];
 
                                         //very basic validation
                                         if(!$user->isValidUsername($username)){
-                                            $error[] = $l['3chara'];
+                                            $error[] = "Username is not valid";
                                         }
 
                                         if(strlen($_POST['password']) < 3){
-                                            $error[] = $l['3charapass'];
+                                            $error[] = "Password is too short";
                                         }
 
                                         if(strlen($_POST['passwordConfirm']) < 3){
-                                            $error[] = $l['3charapass'];
+                                            $error[] = "Password is too short";
                                         }
 
                                         if($_POST['password'] != $_POST['passwordConfirm']){
-                                            $error[] = $l['passesnotsame'];
+                                            $error[] = "Passwords are not the same";
                                         }
+
+                                        echo "a";
 
                                         //email validation
                                         $email = htmlspecialchars_decode($_POST['email'], ENT_QUOTES);
                                         if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
                                             $error[] = $l['notvalidemail'];
                                         }
-
+                                        echo "a";
                                         //if no errors have been created carry on
                                         if(!isset($error)){
 
@@ -306,7 +360,17 @@
 												fclose($fp);
 												
                                                 $id = $db->lastInsertId('memberID');
-                                                //redirect to index page
+                                                        // unset cookies
+                                                        if (isset($_SERVER['HTTP_COOKIE'])) {
+                                                            $cookies = explode(';', $_SERVER['HTTP_COOKIE']);
+                                                            foreach($cookies as $cookie) {
+                                                                $parts = explode('=', $cookie);
+                                                                $name = trim($parts[0]);
+                                                                setcookie($name, '', time()-1000);
+                                                                setcookie($name, '', time()-1000, '/');
+                                                            }
+                                                        }
+                                                        //redirect to index page
 														header('Location: core/user_panel/index.php?action=installed');
 														exit;
 

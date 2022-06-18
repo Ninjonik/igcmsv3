@@ -5,7 +5,6 @@ SET time_zone = '+00:00';
 SET foreign_key_checks = 0;
 SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 
-DROP TABLE IF EXISTS `assignments`;
 CREATE TABLE `assignments` (
   `id` int NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL,
@@ -20,7 +19,6 @@ CREATE TABLE `assignments` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 
 
-DROP TABLE IF EXISTS `assignments_comments`;
 CREATE TABLE `assignments_comments` (
   `id` int NOT NULL AUTO_INCREMENT,
   `userID` int NOT NULL,
@@ -31,7 +29,6 @@ CREATE TABLE `assignments_comments` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 
 
-DROP TABLE IF EXISTS `case_cases`;
 CREATE TABLE `case_cases` (
   `id` int NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL,
@@ -44,7 +41,6 @@ CREATE TABLE `case_cases` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 
 
-DROP TABLE IF EXISTS `case_items`;
 CREATE TABLE `case_items` (
   `id` int NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL,
@@ -55,7 +51,6 @@ CREATE TABLE `case_items` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 
 
-DROP TABLE IF EXISTS `case_money`;
 CREATE TABLE `case_money` (
   `id` int NOT NULL AUTO_INCREMENT,
   `memberID` int NOT NULL,
@@ -65,7 +60,6 @@ CREATE TABLE `case_money` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 
 
-DROP TABLE IF EXISTS `categories`;
 CREATE TABLE `categories` (
   `catID` int NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -74,7 +68,6 @@ CREATE TABLE `categories` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 
 
-DROP TABLE IF EXISTS `chat`;
 CREATE TABLE `chat` (
   `id` int NOT NULL AUTO_INCREMENT,
   `message` text NOT NULL,
@@ -83,7 +76,6 @@ CREATE TABLE `chat` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 
 
-DROP TABLE IF EXISTS `forums`;
 CREATE TABLE `forums` (
   `id` int NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL,
@@ -95,7 +87,6 @@ CREATE TABLE `forums` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 
 
-DROP TABLE IF EXISTS `groups`;
 CREATE TABLE `groups` (
   `id` int NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL,
@@ -105,11 +96,11 @@ CREATE TABLE `groups` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 
-INSERT INTO `groups` (`id`, `title`, `colour`, `perms`, `html`) VALUES
-(0,	'Guest',	'#3483eb',	NULL,	'<span class=\"badge badge-primary\"><strong><i class=\"fas fa-crown\"></i> Guest</strong></span> '),
-(1,	'Admin',	'#ff0000',	'a:14:{i:0;a:2:{s:2:"id";i:1;s:5:"value";i:1;}i:1;a:2:{s:2:"id";i:2;s:5:"value";i:1;}i:2;a:2:{s:2:"id";i:3;s:5:"value";i:1;}i:3;a:2:{s:2:"id";i:4;s:5:"value";i:1;}i:4;a:2:{s:2:"id";i:5;s:5:"value";i:1;}i:5;a:2:{s:2:"id";i:6;s:5:"value";i:1;}i:6;a:2:{s:2:"id";i:7;s:5:"value";i:1;}i:7;a:2:{s:2:"id";i:8;s:5:"value";i:1;}i:8;a:2:{s:2:"id";i:9;s:5:"value";i:1;}i:9;a:2:{s:2:"id";i:10;s:5:"value";i:1;}i:10;a:2:{s:2:"id";i:11;s:5:"value";i:1;}i:11;a:2:{s:2:"id";i:12;s:5:"value";i:1;}i:12;a:2:{s:2:"id";i:13;s:5:"value";i:1;}i:13;a:2:{s:2:"id";i:14;s:5:"value";i:1;}}',	'<span class=\"badge badge-primary\"><strong><i class=\"fas fa-crown\"></i> Admin</strong></span> '),
 
-DROP TABLE IF EXISTS `groups_perms`;
+INSERT INTO `groups` (`id`, `title`, `colour`, `perms`, `html`) VALUES
+(0,	'Guest',	'#3483eb',	NULL,	'<span class=\"badge badge-primary\"><strong> Guest</strong></span> '),
+(1,	'Admin',	'#ff0000',	'a:14:{i:0;a:2:{s:2:"id";i:1;s:5:"value";i:1;}i:1;a:2:{s:2:"id";i:2;s:5:"value";i:1;}i:2;a:2:{s:2:"id";i:3;s:5:"value";i:1;}i:3;a:2:{s:2:"id";i:4;s:5:"value";i:1;}i:4;a:2:{s:2:"id";i:5;s:5:"value";i:1;}i:5;a:2:{s:2:"id";i:6;s:5:"value";i:1;}i:6;a:2:{s:2:"id";i:7;s:5:"value";i:1;}i:7;a:2:{s:2:"id";i:8;s:5:"value";i:1;}i:8;a:2:{s:2:"id";i:9;s:5:"value";i:1;}i:9;a:2:{s:2:"id";i:10;s:5:"value";i:1;}i:10;a:2:{s:2:"id";i:11;s:5:"value";i:1;}i:11;a:2:{s:2:"id";i:12;s:5:"value";i:1;}i:12;a:2:{s:2:"id";i:13;s:5:"value";i:1;}i:13;a:2:{s:2:"id";i:14;s:5:"value";i:1;}}',	'<span class=\"badge badge-primary\"><strong><i class=\"fas fa-crown\"></i> Admin</strong></span> ');
+
 CREATE TABLE `groups_perms` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8_czech_ci NOT NULL,
@@ -132,7 +123,6 @@ INSERT INTO `groups_perms` (`id`, `name`) VALUES
 (13,	'posts\r\n'),
 (14,	'managecases');
 
-DROP TABLE IF EXISTS `img`;
 CREATE TABLE `img` (
   `id` int NOT NULL AUTO_INCREMENT,
   `date` int NOT NULL,
@@ -147,7 +137,6 @@ CREATE TABLE `img` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 
-DROP TABLE IF EXISTS `likent`;
 CREATE TABLE `likent` (
   `id` int NOT NULL AUTO_INCREMENT,
   `imgID` int NOT NULL,
@@ -159,7 +148,6 @@ CREATE TABLE `likent` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 
-DROP TABLE IF EXISTS `members`;
 CREATE TABLE `members` (
   `memberID` int NOT NULL AUTO_INCREMENT,
   `username` varchar(255) NOT NULL,
@@ -184,7 +172,6 @@ CREATE TABLE `members` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 
-DROP TABLE IF EXISTS `pages`;
 CREATE TABLE `pages` (
   `id` int NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL,
@@ -196,7 +183,6 @@ CREATE TABLE `pages` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 
 
-DROP TABLE IF EXISTS `plugins`;
 CREATE TABLE `plugins` (
   `id` int NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL,
@@ -208,7 +194,6 @@ CREATE TABLE `plugins` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 
 
-DROP TABLE IF EXISTS `posts`;
 CREATE TABLE `posts` (
   `id` int NOT NULL AUTO_INCREMENT,
   `title` varchar(255) DEFAULT NULL,
@@ -225,7 +210,6 @@ CREATE TABLE `posts` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 
 
-DROP TABLE IF EXISTS `posts_comments`;
 CREATE TABLE `posts_comments` (
   `id` int NOT NULL AUTO_INCREMENT,
   `userID` int DEFAULT NULL,
@@ -238,7 +222,6 @@ CREATE TABLE `posts_comments` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 
 
-DROP TABLE IF EXISTS `settings`;
 CREATE TABLE `settings` (
   `background` varchar(255) DEFAULT 'default.png',
   `siteTitle` varchar(255) DEFAULT NULL,
@@ -249,7 +232,6 @@ CREATE TABLE `settings` (
 INSERT INTO `settings` (`background`, `siteTitle`, `siteDesc`, `defaultsite`) VALUES
 ('1647680374.jpg',	'IG CMS',	'Innovation Gaming Content Management System',	'posts');
 
-DROP TABLE IF EXISTS `settings_modules`;
 CREATE TABLE `settings_modules` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8_czech_ci NOT NULL,
@@ -265,7 +247,6 @@ INSERT INTO `settings_modules` (`id`, `name`, `value`) VALUES
 (5,	'casesystem',	1),
 (6,	'custompages',	1);
 
-DROP TABLE IF EXISTS `tickets`;
 CREATE TABLE `tickets` (
   `id` int NOT NULL AUTO_INCREMENT,
   `authorID` int NOT NULL,
@@ -279,7 +260,6 @@ CREATE TABLE `tickets` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 
 
-DROP TABLE IF EXISTS `tickets_comments`;
 CREATE TABLE `tickets_comments` (
   `id` int NOT NULL AUTO_INCREMENT,
   `userID` int NOT NULL,
@@ -293,7 +273,6 @@ CREATE TABLE `tickets_comments` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 
 
-DROP TABLE IF EXISTS `topics`;
 CREATE TABLE `topics` (
   `id` int NOT NULL AUTO_INCREMENT,
   `authorID` int NOT NULL,
@@ -309,7 +288,6 @@ CREATE TABLE `topics` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 
 
-DROP TABLE IF EXISTS `topics_comments`;
 CREATE TABLE `topics_comments` (
   `id` int NOT NULL AUTO_INCREMENT,
   `userID` int NOT NULL,
