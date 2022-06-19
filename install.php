@@ -59,13 +59,14 @@ error_reporting(E_ALL);
                             
                                             <div style="margin-bottom: 25px" class="input-group">
                                                 <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                                                <input type="text" class="form-control" name="pass" value="" placeholder="User password">                                        
+                                                <input type="text" class="form-control" name="pass" value="" placeholder="User password" *>                                    
                                             </div>
                             
                                             <div style="margin-bottom: 25px" class="input-group">
                                                 <span class="input-group-addon"><i class="glyphicon glyphicon-folder-open"></i></span>
                                                 <input type="text" class="form-control" name="db" placeholder="Database">
                                             </div>
+                                            *Don\'t use password with special characters, you can only use letters and numbers
                                     ';
                             
                                     if(isset($_POST["submit"])){
