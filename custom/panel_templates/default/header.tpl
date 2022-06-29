@@ -311,7 +311,7 @@
             <span class="navbar-toggler-bar navbar-kebab"></span>
           </button>
           <div class="collapse navbar-collapse" id="navigation">
-            <ul class="navbar-nav ml-auto">
+            <ul class="navbar-nav ml-auto"> 
               <!--
               <li class="dropdown nav-item">
                 <a href="javascript:void(0)" class="dropdown-toggle nav-link" data-toggle="dropdown">

@@ -41,7 +41,7 @@
 
   while ($row3 = $stmt3->fetch(PDO::FETCH_ASSOC))
   {
-
+   
     foreach(unserialize($row3["people"]) as $valueas){
       if($valueas["id"] == $_SESSION["memberID"]){
         $stmt4 = $db->prepare("SELECT * FROM assignments WHERE id=:id ORDER BY id DESC LIMIT 5");
@@ -72,7 +72,7 @@
               $status["status"] = '<button class="btn btn-danger">Chyba</button>';
               break;
           }
-
+      
           $assignmentsfinal[] = $row4 + $status;
         }
 

@@ -12,7 +12,7 @@
       updateDB("settings_modules", "value='".$_POST[$itemslist['id']]."'", "id='".$itemslist['id']."'");
       header("Location: settings_modules?action=successfullyupdated");
     }
-  }
+  } 
 
   $smarty->display("settings_modules.tpl");
 

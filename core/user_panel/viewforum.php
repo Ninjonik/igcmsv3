@@ -51,9 +51,9 @@ $forum = $db->prepare("SELECT id, title, `desc`, parent FROM forums WHERE parent
           // MAYBE ONEDAY WILL BE COMPLETED
 
 
-      // LAST UPDATE
+      // LAST UPDATE 
           // PART ONE
-
+          
           $lastupdate = $db->prepare("SELECT TC.userID, TC.time, M.username, T.title, T.id AS countposts, topicID FROM topics as T INNER JOIN topics_comments as TC ON T.id = TC.topicID INNER JOIN members as M ON TC.userID = M.memberID WHERE forumID=:forumID ORDER BY `time` DESC LIMIT 1");
           $lastupdate->execute(array(":forumID" => $forumrow["id"]));
           $lastupdaterow = $lastupdate->fetch(PDO::FETCH_ASSOC);
@@ -64,7 +64,7 @@ $forum = $db->prepare("SELECT id, title, `desc`, parent FROM forums WHERE parent
           $lastupdatefinalised[] = ["parentID" => $forumrow["id"], "data" => $lastupdaterow, "avatar" => $avatarlastupdate];
         // PART ... NEXT
           // MAYBE ONEDAY WILL BE COMPLETED
-
+      
 
   }
 

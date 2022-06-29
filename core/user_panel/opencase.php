@@ -55,7 +55,7 @@
         public function open($MONEY) {
             if ($MONEY >= ($this->get_price() - 1000)) {
                 ManageAccountBalance("-", $this->get_price());
-
+                
                 foreach ($this->get_items() as $item) {
                     $random_num = random_int(1, 10000)/100;
                     if ($random_num <= $item["chance"]) {

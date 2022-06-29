@@ -10,7 +10,6 @@ Drop all content of the downloaded archive into your website.
 Then simply run your website in internet browser.
 
 ## FEATURES
-
 - Authentification system
 - Theme system, with separed logic from styles which gives theme designers much more friendly enviroment
 - Forum system
@@ -25,14 +24,12 @@ Then simply run your website in internet browser.
 - Easy install wizard
 
 ## REQUIREMENTS
-
 - You'll need your own MySQL (MyIsam or InnoDB) database.
 - Most recent PHP version
 - Own webhosting for your domain.
 - Domain
 
 ## INSTALLATION
-
 - Extract IG-CMS .zip file.
 - Drop everything from extracted folder to your webserver.
 - Run website in your browser.

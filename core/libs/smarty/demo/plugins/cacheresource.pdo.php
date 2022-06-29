@@ -33,28 +33,28 @@ class Smarty_CacheResource_Pdo extends Smarty_CacheResource_Custom
      * @var string[]
      */
     protected $fetchStatements = array('default' => 'SELECT %2$s
-                                                                                    FROM %1$s
-                                                                                    WHERE 1
-                                                                                    AND id          = :id
-                                                                                    AND cache_id    IS NULL
+                                                                                    FROM %1$s 
+                                                                                    WHERE 1 
+                                                                                    AND id          = :id 
+                                                                                    AND cache_id    IS NULL 
                                                                                     AND compile_id  IS NULL',
                                        'withCacheId' => 'SELECT %2$s
-                                                                                FROM %1$s
-                                                                                WHERE 1
-                                                                                AND id          = :id
-                                                                                AND cache_id    = :cache_id
+                                                                                FROM %1$s 
+                                                                                WHERE 1 
+                                                                                AND id          = :id 
+                                                                                AND cache_id    = :cache_id 
                                                                                 AND compile_id  IS NULL',
                                        'withCompileId' => 'SELECT %2$s
-                                                                                FROM %1$s
-                                                                                WHERE 1
-                                                                                AND id          = :id
-                                                                                AND compile_id  = :compile_id
+                                                                                FROM %1$s 
+                                                                                WHERE 1 
+                                                                                AND id          = :id 
+                                                                                AND compile_id  = :compile_id 
                                                                                 AND cache_id    IS NULL',
                                        'withCacheIdAndCompileId' => 'SELECT %2$s
-                                                                                FROM %1$s
-                                                                                WHERE 1
-                                                                                AND id          = :id
-                                                                                AND cache_id    = :cache_id
+                                                                                FROM %1$s 
+                                                                                WHERE 1 
+                                                                                AND id          = :id 
+                                                                                AND cache_id    = :cache_id 
                                                                                 AND compile_id  = :compile_id');
 
     /**
@@ -62,20 +62,20 @@ class Smarty_CacheResource_Pdo extends Smarty_CacheResource_Custom
      */
     protected $insertStatement = 'INSERT INTO %s
 
-                                                SET id          =   :id,
-                                                    name        =   :name,
-                                                    cache_id    =   :cache_id,
-                                                    compile_id  =   :compile_id,
-                                                    modified    =   CURRENT_TIMESTAMP,
-                                                    expire      =   DATE_ADD(CURRENT_TIMESTAMP, INTERVAL :expire SECOND),
-                                                    content     =   :content
+                                                SET id          =   :id, 
+                                                    name        =   :name, 
+                                                    cache_id    =   :cache_id, 
+                                                    compile_id  =   :compile_id, 
+                                                    modified    =   CURRENT_TIMESTAMP, 
+                                                    expire      =   DATE_ADD(CURRENT_TIMESTAMP, INTERVAL :expire SECOND), 
+                                                    content     =   :content 
 
-                                                ON DUPLICATE KEY UPDATE
-                                                    name        =   :name,
-                                                    cache_id    =   :cache_id,
-                                                    compile_id  =   :compile_id,
-                                                    modified    =   CURRENT_TIMESTAMP,
-                                                    expire      =   DATE_ADD(CURRENT_TIMESTAMP, INTERVAL :expire SECOND),
+                                                ON DUPLICATE KEY UPDATE 
+                                                    name        =   :name, 
+                                                    cache_id    =   :cache_id, 
+                                                    compile_id  =   :compile_id, 
+                                                    modified    =   CURRENT_TIMESTAMP, 
+                                                    expire      =   DATE_ADD(CURRENT_TIMESTAMP, INTERVAL :expire SECOND), 
                                                     content     =   :content';
 
     /**

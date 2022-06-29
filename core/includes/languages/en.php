@@ -1,5 +1,5 @@
 <?php
-
+ 
 $l = array();
 $l["notdel"] = "Delete all notifications.";
 $l["not1"] = "You were successfully logged in.";
@@ -90,7 +90,7 @@ $l["if_you_dont_asked"] = "If you dont asked for reseting your password, then ju
 $l["someone_has_started"] = "Someone has started reseting password process on";
 $l["but_before"] = "But before you can start reseting process, you need to click on the button below.";
 $l["confirm_reset"] = "Confirm Reset";
-
+ 
 #stp = Step
 $l['stp'] = 'Krok';
 $l['one'] = $l['stp']." One";
@@ -98,7 +98,7 @@ $l['two'] = $l['stp']." Two";
 $l['three'] = $l['stp']." Three";
 $l['Four'] = $l['stp']." Four";
 
-
+ 
 #dbd = Dashboard
 $l["download"] = "Download";
 $l["main"] = "Dashboard";
@@ -161,9 +161,9 @@ $l["group"] = "Group";
 $l["group_add"] = "Group Editor";
 $l["group_name"] = "Group's name";
 $l["group_color"] = "Group's color";
-
+ 
 $l["type"] = "Type";
-
+ 
 $l["forum_forum"] = "Forum";
 $l["forum_forums"] = "Forums";
 $l["forum_category"] = "Category";
@@ -175,12 +175,12 @@ $l["forum_icon"] = "Icon";
 $l["forum_parent"] = "Parent of the forum";
 $l["forum_no_parent"] = "No parent";
 $l["forum_choose"] = "Do you want to create category or forum?";
-
+ 
 $l["port"] = "Port";
 $l["times_downloaded"] = "Times downloaded";
 $l["to_download"] = "To download";
 $l["delete_all_chat"] = "Delete whole chat";
-
+ 
 $l["permissions"] = "Permissions";
 $l["show_dashboard"] = "Show dashboard";
 $l["manage_tickets"] = "Manage tickets";
@@ -193,8 +193,8 @@ $l["manage_groups"] = "Manage groups";
 $l["moderate_chat"] = "Moderate chat";
 $l["manage_forum"] = "Manage forum";
 $l["moderate_forum"] = "Moderate forum";
-
-
+ 
+ 
 $l["jump"] = "Jump";
 $l["show"] = "Show";
 $l["delete"] = "Delete";
@@ -214,14 +214,14 @@ $l["close"] = "Close";
 $l["open"] = "Open";
 $l["mark"] = "Mark";
 $l["unmark"] = "Unmark";
-
+ 
 $l["opened"] = "Opened";
 $l["working_on"] = "Working on";
 $l["closed"] = "Closed";
 $l["stored"] = "Stored";
 $l["error"] = "Error!";
 $l["close"] = "Close";
-
+ 
 #mk = materialkit
 $l["background"] = "Pozadie";
 $l["404"] = "Site has not been found!";

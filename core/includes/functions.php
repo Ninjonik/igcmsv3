@@ -353,22 +353,22 @@ function getperm($perm) {
 	global $db;
 	global $usergroupID;
 	global $user;
-
+	
 	if( !$user->is_logged_in() )
 	{
 		if($_COOKIE["loggedin"] == true){
 			if(!$user->login($_COOKIE['username'],$_COOKIE['password'],true)){
-				header('Location: ../user_panel/login?action=needlogin&route='.$redirect.'');
+				header('Location: ../user_panel/login?action=needlogin&route='.$redirect.''); 
 			}
 		} else {
 			if(empty($redirect)){
-				header('Location: ../user_panel/login?action=needlogin');
+				header('Location: ../user_panel/login?action=needlogin'); 
 			} else {
-				header('Location: ../user_panel/login?action=needlogin&route='.$redirect.'');
+				header('Location: ../user_panel/login?action=needlogin&route='.$redirect.''); 
 			}
 		}
 	}
-
+	
 	$stmtg = $db->prepare('SELECT perms FROM `groups` WHERE id=:usergroupID');
 	$stmtg->execute(array(":usergroupID" => $usergroupID));
 	$rowg = $stmtg->fetch(PDO::FETCH_ASSOC);
@@ -432,13 +432,13 @@ function islog($redirect){
 	{
 		if($_COOKIE["loggedin"] == true){
 			if(!$user->login($_COOKIE['username'],$_COOKIE['password'],true)){
-				header('Location: ../user_panel/login?action=needlogin&route='.$redirect.'');
+				header('Location: ../user_panel/login?action=needlogin&route='.$redirect.''); 
 			}
 		} else {
-			header('Location: ../user_panel/login?action=needlogin&route='.$redirect.'');
+			header('Location: ../user_panel/login?action=needlogin&route='.$redirect.''); 
 		}
-
-	}
+		
+	} 
 }
 
 function isntlog(){
@@ -580,7 +580,7 @@ function smarty_function_getpermVisibility($perm, &$smarty) {
 	global $db;
 	global $usergroupID;
 	global $user;
-
+	
 	$stmtg = $db->prepare('SELECT perms FROM `groups` WHERE id=:usergroupID');
 	$stmtg->execute(array(":usergroupID" => $usergroupID));
 	$rowg = $stmtg->fetch(PDO::FETCH_ASSOC);
@@ -606,7 +606,7 @@ function smarty_function_getpermValue($perm, &$smarty) {
 	global $db;
 	global $usergroupID;
 	global $user;
-
+	
 	$stmtg = $db->prepare('SELECT perms FROM `groups` WHERE id=:usergroupID');
 	$stmtg->execute(array(":usergroupID" => $usergroupID));
 	$rowg = $stmtg->fetch(PDO::FETCH_ASSOC);

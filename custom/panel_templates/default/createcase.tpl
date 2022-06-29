@@ -72,7 +72,7 @@
                                 <option value="{$items['id']}">{$items['title']}</option>
                                 {/foreach}
                             </select>
-
+                            
                           </div>
                         </div>
                         <div class="col-sm-10">

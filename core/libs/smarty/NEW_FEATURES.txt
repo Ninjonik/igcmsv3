@@ -40,7 +40,7 @@ Smarty 3.1.32
     NOTE: In the last example nested Smarty tags starting with '{{' or ending with '}}' will not
     work any longer, but this should be very very raw occouring restriction.
     B) Example 2
-    Assume your delimiter are '<-' , '->' and '<--' , '-->' shall be literals
+    Assume your delimiter are '<-' , '->' and '<--' , '-->' shall be literals 
           $smarty->setLiterals(array('<--','-->'));
 
 
@@ -184,8 +184,8 @@ Smarty 3.1.28
     as the corresponding Smarty methods to get the content of another template.
     Example:
         $template->display();           Does display template of template object
-        $template->display('foo.tpl');  Does display template 'foo.bar'
-
+        $template->display('foo.tpl');  Does display template 'foo.bar'     
+        
     File: resource
     ==============
     Multiple template_dir entries can now be selected  by a comma separated list of indices.

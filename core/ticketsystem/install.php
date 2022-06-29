@@ -157,20 +157,20 @@
         $stmt2->execute();
         $stmt3 = $this->db->prepare('DROP TABLE tickets_comments');
         $stmt3->execute();
-
+  
         // remove plugin's pages
         foreach($this->pagesplugin as $pageplugin){
           unlink('../user_panel/'.$pageplugin.'.php');
           unlink('../../custom/templates/default/'.$pageplugin.'.tpl');
         }
-
+  
         foreach($this->adminpagesplugin as $adminpageplugin){
           unlink('../admin_panel/'.$adminpageplugin.'.php');
           unlink('../../custom/panel_templates/default/'.$dminpageplugin.'.tpl');
         }
-
+  
         unlink('../../custom/panel_templates/default/plugins/'.$this->path.'.tpl');
-
+  
         header("Location: ../admin_panel/plugins?action=pluginunninstalled");
       }
 

@@ -56,9 +56,9 @@
 /* Offset direction
  */
 .noUi-txt-dir-rtl.noUi-horizontal .noUi-origin {
-  left: auto;
-  right: 0;
-}
+   left: auto;
+   right: 0;
+ }
 /* Give origins 0 height/width so they don't interfere with clicking the
  * connect elements.
  */
@@ -131,13 +131,13 @@
  */
 .noUi-target {
   background: #c8c8c8;
-  border-radius: 4px;
+	border-radius: 4px;
 }
 .noUi-connects {
   border-radius: 3px;
 }
 .noUi-connect {
-  background: #3fb8af;
+  background: #3FB8AF;
 }
 /* Handles and cursors;
  */
@@ -161,7 +161,7 @@
   @include shadow-2dp();
 }
 .noUi-active {
-  box-shadow: inset 0 0 1px #fff, inset 0 1px 7px #ddd, 0 3px 6px -3px #bbb;
+  box-shadow: inset 0 0 1px #FFF, inset 0 1px 7px #DDD, 0 3px 6px -3px #BBB;
   transform: scale3d(1.5, 1.5, 1);
 }
 /* Handle stripes;
@@ -183,7 +183,7 @@
 /* Disabled state;
  */
 [disabled] .noUi-connect {
-  background: #b8b8b8;
+  background: #B8B8B8;
 }
 [disabled].noUi-target,
 [disabled].noUi-handle,
@@ -219,13 +219,13 @@
  */
 .noUi-marker {
   position: absolute;
-  background: #ccc;
+  background: #CCC;
 }
 .noUi-marker-sub {
-  background: #aaa;
+  background: #AAA;
 }
 .noUi-marker-large {
-  background: #aaa;
+  background: #AAA;
 }
 /* Horizontal layout;
  *
@@ -288,7 +288,7 @@
 .noUi-tooltip {
   display: block;
   position: absolute;
-  border: 1px solid #d9d9d9;
+  border: 1px solid #D9D9D9;
   border-radius: 3px;
   background: #fff;
   color: #000;
@@ -309,62 +309,63 @@
   right: 120%;
 }
 
+
 .slider {
-  background: #c8c8c8;
+    background: #c8c8c8;
 
-  & .noUi-connect {
-    background-color: $primary;
-    border-radius: 4px;
-  }
-
-  .noUi-handle {
-    border-color: $primary;
-  }
-
-  &.slider-info {
-    & .noUi-connect {
-      background-color: $info;
+    & .noUi-connect{
+        background-color: $primary;
+        border-radius: 4px;
     }
 
-    .noUi-handle {
-      border-color: $info;
-    }
-  }
-  &.slider-success {
-    & .noUi-connect {
-      background-color: $success;
+    .noUi-handle{
+        border-color: $primary;
     }
 
-    .noUi-handle {
-      border-color: $success;
+    &.slider-info{
+        & .noUi-connect{
+            background-color: $info;
+        }
+
+        .noUi-handle{
+            border-color: $info;
+        }
     }
-  }
-  &.slider-warning {
-    & .noUi-connect {
-      background-color: $warning;
+    &.slider-success{
+        & .noUi-connect{
+            background-color: $success;
+        }
+
+        .noUi-handle{
+            border-color: $success;
+        }
+    }
+    &.slider-warning{
+        & .noUi-connect{
+            background-color: $warning;
+        }
+
+        .noUi-handle{
+            border-color: $warning;
+        }
+    }
+    &.slider-danger{
+        & .noUi-connect{
+             background-color: $danger;
+         }
+
+         .noUi-handle{
+             border-color: $danger;
+         }
     }
 
-    .noUi-handle {
-      border-color: $warning;
-    }
-  }
-  &.slider-danger {
-    & .noUi-connect {
-      background-color: $danger;
-    }
+    &.slider-rose{
+        & .noUi-connect{
+             background-color: $rose;
+         }
 
-    .noUi-handle {
-      border-color: $danger;
+         .noUi-handle{
+             border-color: $rose;
+         }
     }
-  }
-
-  &.slider-rose {
-    & .noUi-connect {
-      background-color: $rose;
-    }
-
-    .noUi-handle {
-      border-color: $rose;
-    }
-  }
 }

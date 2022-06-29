@@ -9,7 +9,7 @@
 
   $smarty->display("createitems.tpl");
 
-
+    
   if(isset($_POST["submit"])){
 
     $stmt = $db->prepare('INSERT INTO case_items (title,`value`,`desc`,rarity) VALUES (:title, :value, :desc, :rarity)');

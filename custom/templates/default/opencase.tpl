@@ -9,7 +9,7 @@
           <div class="card card-plain">
               {$WelcomeMessage}
               {$WinMessage}
-
+              
               <form method="post">
                 <br></br>
                 <input type="submit" name="opencase" value = "Open ({$CasePrice} ß)">
@@ -21,7 +21,7 @@
             <div class="border-style:solid;color:red">
             <!--{var_dump($CaseToOpen->get_items())}-->
 
-
+            
               {foreach $CaseToOpen->get_items() as $item}
                 <li id="sikokot">{$item["id"]}</li>
                 <script>
@@ -29,15 +29,15 @@
                     var variablename = document.getElementById("sikokot");
                     variablename.parentNode.removeChild(variablename);
                   }, 500)
-
+                  
                 </script>
-
+            
               {/foreach}
-
-
+              
+            
             </div>
           </div>
-        </div>
+        </div> 
       </div>
     </div>
   </div>

@@ -16,14 +16,14 @@
   flex-grow: 1;
 
   // Add 8dp of padding at the top and bottom of a list. One exception is at the top of a list with a subheader, because subheaders contain their own padding.
-  padding: 0.5rem 0;
+  padding: .5rem 0;
 
   // dense size variation
   &.bmd-list-group-sm {
-    padding: 0.25rem 0;
+    padding: .25rem 0;
 
     .list-group-item {
-      padding: 0.5rem 1rem;
+      padding: .5rem 1rem;
     }
   }
 }
@@ -88,7 +88,7 @@
   }
 
   .list-group-item-text {
-    font-size: 0.875rem;
+    font-size: .875rem;
     color: $gray;
   }
 }
