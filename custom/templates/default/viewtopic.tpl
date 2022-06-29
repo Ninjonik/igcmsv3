@@ -16,7 +16,7 @@
 <div class="main main-raised">
 <div class="container">
    <div class="container-fluid mt-100">
-      <div class="row"> 
+      <div class="row">
          <div class="col-md-12">
          <a href="forum">Fórum</a> &nbsp; / &nbsp;<a href="viewforum?id={$topicinfo['forumID']}">{$topicinfo["titleforum"]}</a>&nbsp; / &nbsp;{$topicinfo["title"]}
 

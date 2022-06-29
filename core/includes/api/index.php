@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 $url = "http://host.igportals.ml/cmsapi/apiv3/index.php";
 $data = file_get_contents($url);

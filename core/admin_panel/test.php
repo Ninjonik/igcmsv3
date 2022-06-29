@@ -1,13 +1,13 @@
-<?php 
+<?php
 
   if(isset($_POST["submit"])){
-	  
+
 	  if(isset($_POST['1'])){
 		$a1 = 1;
 	  } else {
 		$a1 = 0;
 	  }
-	  
+
 	  echo $_POST["text"];
   }
 

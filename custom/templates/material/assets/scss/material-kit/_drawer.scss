@@ -13,7 +13,7 @@
   max-height: 100%;
   overflow: visible;
   overflow-y: auto;
-  font-size: .875rem;
+  font-size: 0.875rem;
 
   // Transform offscreen.
   transition: transform;
@@ -46,7 +46,7 @@
     .list-group-item {
       padding-right: 2.5rem;
       padding-left: 2.5rem;
-      font-size: .8125rem;
+      font-size: 0.8125rem;
       font-weight: 500;
     }
   }

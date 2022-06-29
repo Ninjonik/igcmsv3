@@ -15,7 +15,7 @@
 
   $smarty->display("edititem.tpl");
 
-    
+
   if(isset($_POST["submit"])){
 
     $stmt = $db->prepare('UPDATE case_items SET title=:title, `value`=:value, `desc`=:desc, :rarity=:rarity WHERE id=:id');

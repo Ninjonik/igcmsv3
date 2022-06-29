@@ -40,7 +40,7 @@
                         </td>
                         <td>
                           <div class="form-group">
-                            <select class="form-control" name="{$modul['id']}">               
+                            <select class="form-control" name="{$modul['id']}">
                             {if $modul["value"] == 1}
                                 <option value="1" selected>Zapnuté</option>
                                 <option value="0">Vypnuté</option>

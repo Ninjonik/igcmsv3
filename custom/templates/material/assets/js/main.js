@@ -1,2 +1,2 @@
-    // Animations initialization
-    new WOW().init();
+// Animations initialization
+new WOW().init();

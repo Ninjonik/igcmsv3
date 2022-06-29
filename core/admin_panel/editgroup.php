@@ -36,11 +36,11 @@
     $stmtg = $db->prepare('SELECT perms FROM `groups` WHERE groups.id=:id');
     $stmtg->execute(array(":id" => htmlspecialchars($_GET["id"])));
     $rowg = $stmtg->fetch(PDO::FETCH_ASSOC);
-  
+
     if (!$stmtg->execute()) {
       print_r($stmtg->errorInfo());
     }
-  
+
     while ($rowg = $stmtg->fetch(PDO::FETCH_ASSOC)) {
       $groupsvalues = unserialize($rowg["perms"]);
     }
@@ -67,7 +67,7 @@
 
   if(isset($_POST["submit"])){
 
-    $perms = array(); 
+    $perms = array();
 
     for ($x = 1; $x <= $i; $x++) {
       if(empty($_POST[strval($x)])){
@@ -76,7 +76,7 @@
         echo $_POST[strval($x)];
         $perms[] = array('id' => $x, 'value' => 1);
       }
-    } 
+    }
     $rdyperms = serialize($perms);
 
     $title = $_POST["firstname"];

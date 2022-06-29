@@ -2,8 +2,8 @@
 * Smarty Internal Plugin Configfileparser
 *
 * This is the config file parser
-* 
-* 
+*
+*
 * @package Smarty
 * @subpackage Config
 * @author Uwe Tews

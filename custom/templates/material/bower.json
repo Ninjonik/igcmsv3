@@ -1,9 +1,7 @@
 {
   "name": "material-kit",
   "homepage": "https://github.com/creativetimofficial/material-kit",
-  "authors": [
-    "creative-tim"
-  ],
+  "authors": ["creative-tim"],
   "description": "A Badass Bootstrap UI Kit based on Material Design",
   "main": "index.html",
   "keywords": [
@@ -16,11 +14,5 @@
     "twitter"
   ],
   "license": "Creative TIM License",
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
-  ]
+  "ignore": ["**/.*", "node_modules", "bower_components", "test", "tests"]
 }

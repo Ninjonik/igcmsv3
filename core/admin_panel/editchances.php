@@ -12,7 +12,7 @@
 
   foreach($finalitem as $finalitemm){
     $itemnames[] = getfromDBw("*", "case_items", "id", $finalitemm["id"]);
-    
+
   }
   $smarty->assign("item", $itemnames);
 
@@ -25,10 +25,10 @@
             "id" => $key,
             "chance" => $value
         );
-        
+
         //$finalarrayos[$key] = $value;
         //array_push($finalarrayos, $value);
-        
+
     }
     $ser = serialize($finalarrayos);
     $itemslist = serialize($_POST["itemslist"]);

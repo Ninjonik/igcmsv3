@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 	require_once("hdr.php");
 
@@ -48,9 +48,9 @@
 						// MAYBE ONEDAY WILL BE COMPLETED
 
 
-				// LAST UPDATE 
+				// LAST UPDATE
 						// PART ONE
-						
+
 						$lastupdate = $db->prepare("SELECT TC.userID, TC.time, M.username, T.title, T.id AS topicID FROM topics as T INNER JOIN topics_comments as TC ON T.id = TC.topicID INNER JOIN members as M ON TC.userID = M.memberID WHERE forumID=:forumID ORDER BY `time` DESC LIMIT 1");
 						$lastupdate->execute(array(":forumID" => $forumrow["id"]));
 						$lastupdaterow = $lastupdate->fetch(PDO::FETCH_ASSOC);
@@ -61,7 +61,7 @@
 						$lastupdatefinalised[] = ["parentID" => $forumrow["id"], "data" => $lastupdaterow, "avatar" => $avatarlastupdate];
 					// PART ... NEXT
 						// MAYBE ONEDAY WILL BE COMPLETED
-				
+
 
 		}
 	}

@@ -4,11 +4,11 @@
 										define("DBUSER", "dbuser");
 										define("DBPASS", "password");
 										define("DBNAME", "igcmstest");
-										
+
 										//application address
 										define("DIR","http://localhost/igcms");
 										define("SITEEMAIL","");
-										
+
 										$siteemail = "".SITEEMAIL."";
                                         $siteurl = "".DIR."/";
 
@@ -32,7 +32,6 @@
                                             }
 
                                         }
-										
+
 										?>
-										
-										
+

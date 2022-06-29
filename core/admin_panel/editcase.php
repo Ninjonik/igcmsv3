@@ -8,7 +8,7 @@
   $smarty->assign("item", $item);
 
   $smarty->display("editcase.tpl");
-    
+
   if(isset($_POST["submit"])){
 
     $itemslist = serialize($_POST["itemslist"]);

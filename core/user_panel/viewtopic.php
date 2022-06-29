@@ -113,7 +113,7 @@
 		$avatar22["avatar"] = getavatar(100, $rowsecond2["userID"]);
 		$userinfo = new userinfo($rowsecond2["userID"],$db);
  		$usergroupinfo["html"] = $userinfo->usrgrpdetails("groups.html");
-		
+
 		$rowfinal32[] = $rowsecond2 + $avatar22 + $quotefinal + $usergroupinfo;
 	}
 

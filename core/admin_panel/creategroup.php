@@ -14,7 +14,7 @@
 
   if(isset($_POST["submit"])){
 
-    $perms = array(); 
+    $perms = array();
 
     for ($x = 1; $x <= $i; $x++) {
       if(empty($_POST[strval($x)])){
@@ -23,7 +23,7 @@
         echo $_POST[strval($x)];
         $perms[] = array('id' => $x, 'value' => 1);
       }
-    } 
+    }
     $rdyperms = serialize($perms);
 
       $stmt = $db->prepare('INSERT INTO `groups` (title,colour,perms,html) VALUES (:title, :colour, :perms, :html)');
