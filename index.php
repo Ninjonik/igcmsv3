@@ -1,11 +1,3 @@
-
-													
-													<?php 
-
-													    header("Location: install.php");
-													
-													?>
-													
-												
-													
-												
+<?php
+header("Location: install.php");
+?>
