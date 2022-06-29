@@ -1,21 +1,21 @@
 <?php
 
-require_once("hdr.php");
+  require_once("hdr.php");
 
-getperm(3);
+  getperm(3);
 
-$smarty->display("createcat.tpl");
+  $smarty->display("createcat.tpl");
 
-if(isset($_POST["submit"])){
+  if(isset($_POST["submit"])){
 
-    $stmt = $db->prepare('INSERT INTO categories (name,type) VALUES (:name, :type)');
-    $stmt->execute(array(
-        ':name' => $_POST["catname"],
-        ':type' => $_POST["type"]
-    ));
+      $stmt = $db->prepare('INSERT INTO categories (name,type) VALUES (:name, :type)');
+      $stmt->execute(array(
+          ':name' => $_POST["catname"],
+          ':type' => $_POST["type"]
+      ));
 
-    header("Location: cats?action=categorysuccessfullycreated");
+      header("Location: cats?action=categorysuccessfullycreated");
 
-}
+  }
 
 ?>
